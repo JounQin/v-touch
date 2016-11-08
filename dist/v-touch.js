@@ -45,11 +45,10 @@ var EVENTS = [{
 }][+touchSupport];
 
 var EMPTY_FUNC = function EMPTY_FUNC() {};
-
-var handler = {};
+var HANDLER = {};
 
 ['start', 'moveStart', 'moving', 'moveEnd', 'end', 'tap', 'swipeLeft', 'swipeRight', 'swipeUp', 'swipeDown'].forEach(function (event) {
-  return handler[event] = EMPTY_FUNC;
+  return HANDLER[event] = EMPTY_FUNC;
 });
 
 var DEFAULT_OPTIONS = {
@@ -64,7 +63,7 @@ var touch = {
 
     var value = binding.value;
     Object.assign({}, DEFAULT_OPTIONS, value);
-    var handler = Object.assign({}, handler, value.handler);
+    var handler = Object.assign({}, HANDLER, value.handler);
     var $el = touchSupport ? el : document;
     utils.on($el, EVENTS.start, function (e) {
       e.preventDefault();
