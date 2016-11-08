@@ -1,0 +1,12 @@
+{
+  "name": "v-touch",
+  "version": "0.0.0",
+  "description": "A full-featured gesture component designed for Vue",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:JounQin/v-touch.git",
+    "type": "git"
+  },
+  "author": "JounQin <admin@1stg.me>",
+  "license": "MIT"
+}

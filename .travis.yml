@@ -1,0 +1,29 @@
+language: node_js
+node_js: stable
+
+sudo: false
+
+branches:
+  only:
+  - master
+
+before_install:
+- set -e
+- openssl aes-256-cbc -K $encrypted_dcf72c291a03_key -iv $encrypted_dcf72c291a03_iv
+  -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- eval $(ssh-agent)
+- ssh-add ~/.ssh/id_rsa
+- cp .travis/ssh_config ~/.ssh/config
+- git config --global user.name 'JounQin'
+- git config --global user.email 'liujiaren1992@vip.qq.com'
+- npm i -g yarn
+- rm -rf .yarnrc yarn.lock
+
+install:
+- yarn
+
+script:
+- yarn run build
+- git push --force --quiet git@git.coding.net:Raiyee/EasyHi.git master:master
+- yarn run sync
