@@ -1,1 +1,18 @@
-# Created by .ignore support plugin (hsz.mobi)
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+# Logs
+logs
+*.log
+npm-debug.log*
+node_modules
+
+lib
+
+.eslint*
+.travis*
+.yarnrc
+yarn.lock

@@ -1,3 +1,1 @@
-/**
- * Created by JounQin on 2016/11/8.
- */
+module.exports = require('./dist/v-touch')

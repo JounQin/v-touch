@@ -1,13 +1,10 @@
 {
   "presets": [
-    "es2015",
+    "es2015-rollup",
     "stage-0"
   ],
   "plugins": [
-    "add-module-exports",
-    "transform-async-to-generator",
-    "transform-runtime",
-    "transform-vue-jsx"
+    "add-module-exports"
   ],
   "comments": false
 }
