@@ -11,6 +11,8 @@ npm-debug.log*
 node_modules
 
 lib
+utils
+webpack
 
 .eslint*
 .travis*
