@@ -162,7 +162,9 @@ var EVENTS = BASE_EVENTS[+touchSupport];
 var DEFAULT_OPTIONS = {
   x: false,
   y: false,
-  speed: 1
+  speed: 1,
+  context: undefined,
+  methods: false
 };
 
 var actualEvent = function actualEvent(e, prevent, stop) {
@@ -188,27 +190,34 @@ function init(el, _ref) {
       prevent = _ref$modifiers.prevent,
       stop = _ref$modifiers.stop;
 
-  var isPrevent = isPreventFunc(this);
   value = Object.assign({}, DEFAULT_OPTIONS, value);
+
   var _value = value,
-      start = _value.start,
-      moveStart = _value.moveStart,
-      moving = _value.moving,
-      moveEnd = _value.moveEnd,
-      end = _value.end,
-      tap = _value.tap,
-      dbTap = _value.dbTap,
-      press = _value.press,
-      swipeLeft = _value.swipeLeft,
-      swipeRight = _value.swipeRight,
-      swipeUp = _value.swipeUp,
-      swipeDown = _value.swipeDown;
+      context = _value.context,
+      methods = _value.methods;
+
+  var isPrevent = isPreventFunc(context);
+
+  var _ref2 = context && methods ? context : value,
+      start = _ref2.start,
+      moveStart = _ref2.moveStart,
+      moving = _ref2.moving,
+      moveEnd = _ref2.moveEnd,
+      end = _ref2.end,
+      tap = _ref2.tap,
+      dbTap = _ref2.dbTap,
+      press = _ref2.press,
+      swipeLeft = _ref2.swipeLeft,
+      swipeRight = _ref2.swipeRight,
+      swipeUp = _ref2.swipeUp,
+      swipeDown = _ref2.swipeDown;
 
   var $el = touchSupport ? el : document;
   var eventParam = Object.create({}, { currentTarget: { value: el, writable: false } });
   var wrapEvent = function wrapEvent(e, params) {
     return Object.assign(e, eventParam, params);
   };
+
   _utils2.default.on(el, EVENTS.start, el.eStart = function (e) {
     clearTimeout(tapTimeoutId);
 
@@ -297,13 +306,13 @@ function init(el, _ref) {
         var absChangedY = Math.abs(changedY);
 
         var event = void 0;
-        if (absChangedX < 10) {
+        if (absChangedX < 20) {
           if (changedY > 50) {
             event = swipeDown;
           } else if (changedY < -50) {
             event = swipeUp;
           }
-        } else if (absChangedY < 10) {
+        } else if (absChangedY < 20) {
           if (changedX > 50) {
             event = swipeRight;
           } else if (changedX < -50) {
