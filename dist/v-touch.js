@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 0.1.0
+ * Version 0.1.1
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -253,12 +253,12 @@ exports.default = {
         var changedX = e.clientX - el._clientX;
         var changedY = e.clientY - el._clientY;
 
-        var moveEndEvent = Object.assign(endEvent, {
+        Object.assign(endEvent, {
           changedX: changedX,
           changedY: changedY
         });
 
-        if (false === handler.moveEnd.call(_this, moveEndEvent)) return;
+        if (false === handler.moveEnd.call(_this, endEvent)) return;
 
         if (!value.x && !value.y) {
           var absChangedX = Math.abs(changedX);
@@ -266,15 +266,15 @@ exports.default = {
 
           if (absChangedX < 10) {
             if (changedY > 50) {
-              if (false === handler.swipeDown.call(_this, moveEndEvent)) return;
+              if (false === handler.swipeDown.call(_this, endEvent)) return;
             } else if (changedY < -50) {
-              if (false === handler.swipeUp.call(_this, moveEndEvent)) return;
+              if (false === handler.swipeUp.call(_this, endEvent)) return;
             }
           } else if (absChangedY < 10) {
             if (changedX > 50) {
-              if (false === handler.swipeRight.call(_this, moveEndEvent)) return;
+              if (false === handler.swipeRight.call(_this, endEvent)) return;
             } else if (changedX < -50) {
-              if (false === handler.swipeLeft.call(_this, moveEndEvent)) return;
+              if (false === handler.swipeLeft.call(_this, endEvent)) return;
             }
           }
         }
