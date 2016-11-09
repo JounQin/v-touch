@@ -11,11 +11,11 @@ export function off(el, events, handler, useCapture = false) {
 }
 
 export function translate(el, x, y, z) {
-  let args;
+  let args
   if (arguments.length === 2 && x !== null && isObject(x) && (args = x)) {
-    x = args.x;
-    y = args.y;
-    z = args.z;
+    x = args.x
+    y = args.y
+    z = args.z
   }
 
   const translate = getTranslate3d(el)
@@ -35,7 +35,7 @@ export const getTranslate = el => {
   if (!matrix.indexOf('matrix3d')) {
     const {x, y} = getTranslate3d(el)
     return {x, y}
-  } else if (-1 === matrix.indexOf('matrix')) return {x: 0, y: 0}
+  } else if (matrix.indexOf('matrix') === -1) return {x: 0, y: 0}
 
   const matrixArr = matrix.substring(7, matrix.length - 1).split(',')
   return {
@@ -47,12 +47,13 @@ export const getTranslate = el => {
 export const getTranslate3d = el => {
   const matrix = getComputedStyle(el).transform
 
-  if (-1 === matrix.indexOf('matrix3d')) return {
-    ...getTranslate(el),
-    z: 0
-  }
+  if (matrix.indexOf('matrix3d') === -1) {
+    return {
+      ...getTranslate(el),
+      z: 0
+    } }
 
-  const matrixArr = matrix.substring(9, matrix.length - 1).split(/, */);
+  const matrixArr = matrix.substring(9, matrix.length - 1).split(/, */)
   return {
     x: +matrixArr[12],
     y: +matrixArr[13],

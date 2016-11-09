@@ -141,9 +141,13 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var touchSupport = !!('ontouchstart' in window && navigator.userAgent.toLowerCase().match(/mobile|tablet/) || window.DocumentTouch && document instanceof window.DocumentTouch || window.navigator['msPointerEnabled'] && window.navigator['msMaxTouchPoints'] > 0 || window.navigator['pointerEnabled'] && window.navigator['maxTouchPoints'] > 0 || false);
+var isTouchSupport = function isTouchSupport() {
+  return !!('ontouchstart' in window && navigator.userAgent.toLowerCase().match(/mobile|tablet/) || window.DocumentTouch && document instanceof window.DocumentTouch || window.navigator['msPointerEnabled'] && window.navigator['msMaxTouchPoints'] > 0 || window.navigator['pointerEnabled'] && window.navigator['maxTouchPoints'] > 0 || false);
+};
 
-var EVENTS = [{
+var touchSupport = isTouchSupport();
+
+var BASE_EVENTS = [{
   start: 'mousedown',
   move: 'mousemove',
   end: 'mouseup'
@@ -151,7 +155,9 @@ var EVENTS = [{
   start: 'touchstart',
   move: 'touchmove',
   end: 'touchend'
-}][+touchSupport];
+}];
+
+var EVENTS = BASE_EVENTS[+touchSupport];
 
 var EMPTY_FUNC = function EMPTY_FUNC() {};
 var HANDLER = {};
@@ -174,133 +180,161 @@ var actualEvent = function actualEvent(e, prevent, stop) {
 
 var tapTimeoutId = void 0;
 
-exports.default = {
-  bind: function bind(el, _ref) {
-    var _this = this;
+function init(el, _ref) {
+  var _this = this;
 
-    var value = _ref.value,
-        _ref$modifiers = _ref.modifiers,
-        prevent = _ref$modifiers.prevent,
-        stop = _ref$modifiers.stop;
+  var value = _ref.value,
+      _ref$modifiers = _ref.modifiers,
+      prevent = _ref$modifiers.prevent,
+      stop = _ref$modifiers.stop;
 
-    value = Object.assign({}, DEFAULT_OPTIONS, value);
-    var handler = Object.assign({}, HANDLER, value.handler);
-    var $el = touchSupport ? el : document;
-    var eventParam = Object.create({}, { currentTarget: { value: el, writable: false } });
-    var wrapEvent = function wrapEvent(e, params) {
-      return Object.assign(e, eventParam, params);
-    };
-    _utils2.default.on(el, EVENTS.start, el.eStart = function (e) {
-      clearTimeout(tapTimeoutId);
+  value = Object.assign({}, DEFAULT_OPTIONS, value);
+  var handler = Object.assign({}, HANDLER, value.handler);
+  var $el = touchSupport ? el : document;
+  var eventParam = Object.create({}, { currentTarget: { value: el, writable: false } });
+  var wrapEvent = function wrapEvent(e, params) {
+    return Object.assign(e, eventParam, params);
+  };
+  _utils2.default.on(el, EVENTS.start, el.eStart = function (e) {
+    clearTimeout(tapTimeoutId);
 
-      e = actualEvent(e, true, stop);
-      if (false === handler.start.call(_this, wrapEvent(e))) el._doNotMove = true;
-      Object.assign(el, {
-        _clientX: e.clientX,
-        _clientY: e.clientY,
-        _translate: (0, _utils.getTranslate)(el),
-        _startTime: +new Date()
-      });
-    }).on($el, EVENTS.move, el.eMove = function (e) {
-      var originalTranslate = el._translate;
-      if (!originalTranslate || el._doNotMove) return;
-      e = actualEvent(e, prevent, stop);
+    e = actualEvent(e, true, stop);
+    if (handler.start.call(_this, wrapEvent(e)) === false) el._doNotMove = true;
+    Object.assign(el, {
+      _clientX: e.clientX,
+      _clientY: e.clientY,
+      _translate: (0, _utils.getTranslate)(el),
+      _startTime: +new Date()
+    });
+  }).on($el, EVENTS.move, el.eMove = function (e) {
+    var originalTranslate = el._translate;
+    if (!originalTranslate || el._doNotMove) return;
+    e = actualEvent(e, prevent, stop);
 
-      var _e = e,
-          clientX = _e.clientX,
-          clientY = _e.clientY;
-      var originalClientX = el._clientX,
-          originalClientY = el._clientY;
-      var originalTranslateX = originalTranslate.x,
-          originalTranslateY = originalTranslate.y;
+    var _e = e,
+        clientX = _e.clientX,
+        clientY = _e.clientY;
+    var originalClientX = el._clientX,
+        originalClientY = el._clientY;
+    var originalTranslateX = originalTranslate.x,
+        originalTranslateY = originalTranslate.y;
 
 
-      var changedX = clientX - originalClientX;
-      var changedY = clientY - originalClientY;
+    var changedX = clientX - originalClientX;
+    var changedY = clientY - originalClientY;
 
-      if (Math.abs(changedX) > 5 || Math.abs(changedY) > 5) el._moved = true;
+    if (Math.abs(changedX) > 5 || Math.abs(changedY) > 5) el._moved = true;
 
-      if (el._moved && !el._moveStarted) {
-        if (false === handler.moveStart.call(_this, wrapEvent(e))) return;
-        el._moveStarted = true;
-      }
+    if (el._moved && !el._moveStarted) {
+      if (handler.moveStart.call(_this, wrapEvent(e)) === false) return;
+      el._moveStarted = true;
+    }
 
-      var translateX = value.x ? originalTranslateX + value.speed * changedX : originalTranslateX;
-      var translateY = value.y ? originalTranslateY + value.speed * changedY : originalTranslateY;
+    var translateX = value.x ? originalTranslateX + value.speed * changedX : originalTranslateX;
+    var translateY = value.y ? originalTranslateY + value.speed * changedY : originalTranslateY;
 
-      var movingEvent = wrapEvent(e, {
-        translateX: translateX,
-        translateY: translateY,
+    var movingEvent = wrapEvent(e, {
+      translateX: translateX,
+      translateY: translateY,
+      changedX: changedX,
+      changedY: changedY
+    });
+
+    if (handler.moving.call(_this, movingEvent) === false) return;
+    translateX = movingEvent.translateX;
+    translateY = movingEvent.translateY;
+
+    (0, _utils.translate)(el, translateX, translateY);
+  }).on($el, EVENTS.end, el.eEnd = function (e) {
+    e = actualEvent(e, prevent, stop);
+
+    var clientX = el._clientX,
+        clientY = el._clientY,
+        translate = el._translate,
+        moved = el._moved,
+        startTime = el._startTime;
+
+
+    delete el._clientX;
+    delete el._clientY;
+    delete el._moved;
+    delete el._moveStarted;
+    delete el._startTime;
+    delete el._translate;
+
+    if (!translate) return;
+
+    var endEvent = wrapEvent(e);
+
+    if (moved) {
+      var changedX = e.clientX - clientX;
+      var changedY = e.clientY - clientY;
+
+      Object.assign(endEvent, {
         changedX: changedX,
         changedY: changedY
       });
 
-      if (false === handler.moving.call(_this, movingEvent)) return;
-      translateX = movingEvent.translateX;
-      translateY = movingEvent.translateY;
+      if (handler.moveEnd.call(_this, endEvent) === false) return;
 
-      (0, _utils.translate)(el, translateX, translateY);
-    }).on($el, EVENTS.end, el.eEnd = function (e) {
-      e = actualEvent(e, prevent, stop);
+      if (!value.x && !value.y) {
+        var absChangedX = Math.abs(changedX);
+        var absChangedY = Math.abs(changedY);
 
-      delete el._moveStarted;
-
-      if (!el._translate) return;
-
-      var endEvent = wrapEvent(e);
-
-      if (el._moved) {
-        var changedX = e.clientX - el._clientX;
-        var changedY = e.clientY - el._clientY;
-
-        Object.assign(endEvent, {
-          changedX: changedX,
-          changedY: changedY
-        });
-
-        if (false === handler.moveEnd.call(_this, endEvent)) return;
-
-        if (!value.x && !value.y) {
-          var absChangedX = Math.abs(changedX);
-          var absChangedY = Math.abs(changedY);
-
-          if (absChangedX < 10) {
-            if (changedY > 50) {
-              if (false === handler.swipeDown.call(_this, endEvent)) return;
-            } else if (changedY < -50) {
-              if (false === handler.swipeUp.call(_this, endEvent)) return;
-            }
-          } else if (absChangedY < 10) {
-            if (changedX > 50) {
-              if (false === handler.swipeRight.call(_this, endEvent)) return;
-            } else if (changedX < -50) {
-              if (false === handler.swipeLeft.call(_this, endEvent)) return;
-            }
+        if (absChangedX < 10) {
+          if (changedY > 50) {
+            if (handler.swipeDown.call(_this, endEvent) === false) return;
+          } else if (changedY < -50) {
+            if (handler.swipeUp.call(_this, endEvent) === false) return;
+          }
+        } else if (absChangedY < 10) {
+          if (changedX > 50) {
+            if (handler.swipeRight.call(_this, endEvent) === false) return;
+          } else if (changedX < -50) {
+            if (handler.swipeLeft.call(_this, endEvent) === false) return;
           }
         }
-      } else {
-        var duration = +new Date() - el._startTime;
-        el._tapped = el._tapped + 1 || 1;
-
-        if (duration < 200) {
-          return tapTimeoutId = setTimeout(function () {
-            var tapped = el._tapped;
-            delete el._tapped;
-            if (tapped < 3) if (false === handler[tapped === 1 ? 'tap' : 'dbTap'].call(_this, endEvent)) return;
-            handler.end.call(_this, endEvent);
-          }, 200);
-        } else {
-          if (false === handler.press.call(_this, endEvent)) return;
-        }
       }
+    } else {
+      var duration = +new Date() - startTime;
+      el._tapped = el._tapped + 1 || 1;
 
-      handler.end.call(_this, endEvent);
+      if (duration < 200) {
+        return tapTimeoutId = setTimeout(function () {
+          var tapped = el._tapped;
+          delete el._tapped;
+          if (tapped < 3) if (handler[tapped === 1 ? 'tap' : 'dbTap'].call(_this, endEvent) === false) return;
+          handler.end.call(_this, endEvent);
+        }, 200);
+      } else {
+        if (handler.press.call(_this, endEvent) === false) return;
+      }
+    }
+    handler.end.call(_this, endEvent);
+  });
+}
+
+function destroy(el) {
+  var $el = touchSupport ? el : document;
+  _utils2.default.off(el, EVENTS.start, el.eStart).off($el, EVENTS.move, el.eMove).off($el, EVENTS.end, el.eEnd);
+}
+
+exports.default = {
+  bind: function bind(el, binding) {
+    var _this2 = this;
+
+    init.call(this, el, binding);
+    _utils2.default.on(window, 'resize', function () {
+      var newTouchSupport = isTouchSupport();
+      if (touchSupport === newTouchSupport) return;
+      destroy.call(_this2, el, binding);
+      touchSupport = newTouchSupport;
+      EVENTS = BASE_EVENTS[+touchSupport];
+      init.call(_this2, el, binding);
     });
   },
-  unbind: function unbind(el) {
-    var $el = touchSupport ? el : document;
-    _utils2.default.off(el, EVENTS.start, el.eStart).off($el, EVENTS.move, el.eMove).off($el, EVENTS.end, el.eEnd);
-  }
+
+  unbind: destroy
 };
 module.exports = exports['default'];
 
@@ -370,7 +404,7 @@ var getTranslate = exports.getTranslate = function getTranslate(el) {
         y = _getTranslate3d.y;
 
     return { x: x, y: y };
-  } else if (-1 === matrix.indexOf('matrix')) return { x: 0, y: 0 };
+  } else if (matrix.indexOf('matrix') === -1) return { x: 0, y: 0 };
 
   var matrixArr = matrix.substring(7, matrix.length - 1).split(',');
   return {
@@ -382,9 +416,11 @@ var getTranslate = exports.getTranslate = function getTranslate(el) {
 var getTranslate3d = exports.getTranslate3d = function getTranslate3d(el) {
   var matrix = getComputedStyle(el).transform;
 
-  if (-1 === matrix.indexOf('matrix3d')) return _extends({}, getTranslate(el), {
-    z: 0
-  });
+  if (matrix.indexOf('matrix3d') === -1) {
+    return _extends({}, getTranslate(el), {
+      z: 0
+    });
+  }
 
   var matrixArr = matrix.substring(9, matrix.length - 1).split(/, */);
   return {
