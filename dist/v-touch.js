@@ -1,5 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
+ * Version 0.1.0
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -11,10 +12,10 @@
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
-	else {
-		var a = factory();
-		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
-	}
+	else if(typeof exports === 'object')
+		exports["VTouch"] = factory();
+	else
+		root["VTouch"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -438,7 +439,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var installed = false;
 
-exports.default = {
+var VTouch = {
   install: function install(Vue) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
@@ -447,6 +448,10 @@ exports.default = {
     Vue.directive(options.name || 'touch', _touch2.default);
   }
 };
+
+window.Vue && window.Vue.use(VTouch);
+
+exports.default = VTouch;
 module.exports = exports['default'];
 
 /***/ }

@@ -9,13 +9,15 @@ Now, you can try to use `v-touch` in your project!
 
 A deadly simply example:
 
-``` app.js
+``` js
+// app.js
 import Vue from 'vue'
 import VTouch from 'v-touch'
 Vue.use(VTouch)
 ```
 
-``` touch.vue
+``` vue
+// touch.vue
 <template>
   <button v-touch="touchOptions">
     {{ msg }}

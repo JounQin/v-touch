@@ -4,7 +4,8 @@ import pkg from '../package.json'
 const isProduction = process.env.NODE_ENV === 'production'
 
 const plugins = [new webpack.BannerPlugin({
-  banner: `${pkg.name} -- ${pkg.description}\n
+  banner: `${pkg.name} -- ${pkg.description}
+Version ${pkg.version}\n
 Copyright (C) 2016 ${pkg.author}
 Released under the ${pkg.license} license\n
 Github: ${pkg.repository.url}`,
@@ -29,7 +30,8 @@ export default {
   output: {
     path: 'dist',
     filename: `[name]${isProduction ? '.min' : ''}.js`,
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    library: 'VTouch'
   },
   plugins
 }
