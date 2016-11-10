@@ -16,7 +16,9 @@ new Vue({
   el: '#app',
   template: `<div class="container">
     tap: {{ tapNum }},<br>
-    dbTap: {{ dbTapNum }},<br>
+    dblTap: {{ dblTapNum }},<br>
+    dblTap: {{ dblTapNum }},<br>
+    mltTap: {{ mltTapNum }}, lastMltTapped: {{ lastMltTapped }}<br>
     press: {{ pressNum }},<br>
     swipeLeft: {{ swipeLeftNum }},<br>
     swipeRight: {{ swipeRightNum }},<br>
@@ -38,7 +40,9 @@ new Vue({
       x: false,
       y: false,
       tapNum: 0,
-      dbTapNum: 0,
+      dblTapNum: 0,
+      mltTapNum: 0,
+      lastMltTapped: 0,
       pressNum: 0,
       swipeLeftNum: 0,
       swipeRightNum: 0,
@@ -63,8 +67,12 @@ new Vue({
       tap() {
         this.tapNum++
       },
-      dbTap() {
-        this.dbTapNum++
+      dblTap() {
+        this.dblTapNum++
+      },
+      mltTap({tapped}) {
+        this.mltTapNum++
+        this.lastMltTapped = tapped
       },
       press() {
         this.pressNum++

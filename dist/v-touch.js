@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 0.1.2
+ * Version 0.1.4
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -205,7 +205,8 @@ function init(el, _ref) {
       moveEnd = _ref2.moveEnd,
       end = _ref2.end,
       tap = _ref2.tap,
-      dbTap = _ref2.dbTap,
+      dblTap = _ref2.dblTap,
+      mltTap = _ref2.mltTap,
       press = _ref2.press,
       swipeLeft = _ref2.swipeLeft,
       swipeRight = _ref2.swipeRight,
@@ -330,9 +331,9 @@ function init(el, _ref) {
           var tapped = el._tapped;
           delete el._tapped;
           if (tapped < 3) {
-            var tapEvent = tapped === 1 ? tap : dbTap;
+            var tapEvent = tapped === 1 ? tap : dblTap;
             if (isPrevent(tapEvent, endEvent)) return;
-          }
+          } else if (isPrevent(mltTap, Object.assign(endEvent, { tapped: tapped }))) return;
           isPrevent(end, endEvent);
         }, 200);
       } else if (isPrevent(press, endEvent)) return;
@@ -345,22 +346,28 @@ function init(el, _ref) {
 function destroy(el, binding) {
   var $el = touchSupport ? el : document;
   _utils2.default.off(el, EVENTS.start, el.eStart).off($el, EVENTS.move, el.eMove).off($el, EVENTS.end, el.eEnd);
-
   binding === true || _utils2.default.off(window, 'resize', el.eResize);
 }
+
+var resizeTimeoutId = void 0;
 
 exports.default = {
   bind: function bind(el, binding) {
     var _this = this;
 
     init.call(this, el, binding);
+
     _utils2.default.on(window, 'resize', el.eResize = function () {
-      var newTouchSupport = isTouchSupport();
-      if (touchSupport === newTouchSupport) return;
-      destroy.call(_this, el, true);
-      touchSupport = newTouchSupport;
-      EVENTS = BASE_EVENTS[+touchSupport];
-      init.call(_this, el, binding);
+      clearTimeout(resizeTimeoutId);
+
+      resizeTimeoutId = setTimeout(function () {
+        var newTouchSupport = isTouchSupport();
+        if (touchSupport === newTouchSupport) return;
+        destroy.call(_this, el, true);
+        touchSupport = newTouchSupport;
+        EVENTS = BASE_EVENTS[+touchSupport];
+        init.call(_this, el, binding);
+      }, 300);
     });
   },
   update: function update(el, binding) {
