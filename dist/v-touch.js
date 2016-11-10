@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 0.1.1
+ * Version 0.1.2
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -342,11 +342,11 @@ function init(el, _ref) {
   });
 }
 
-function destroy(el, doNotOffResize) {
+function destroy(el, binding) {
   var $el = touchSupport ? el : document;
   _utils2.default.off(el, EVENTS.start, el.eStart).off($el, EVENTS.move, el.eMove).off($el, EVENTS.end, el.eEnd);
 
-  doNotOffResize || _utils2.default.off(window, 'resize', el.eResize);
+  binding === true || _utils2.default.off(window, 'resize', el.eResize);
 }
 
 exports.default = {

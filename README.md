@@ -9,60 +9,80 @@ Now, you can try to use `v-touch` in your project!
 
 A deadly simply example:
 
-``` js
-// app.js
-import Vue from 'vue'
-import VTouch from 'v-touch'
-Vue.use(VTouch)
-```
+[see this on jsfiddle](https://jsfiddle.net/JounQin/ysvozkLo/)
 
-``` vue
-// touch.vue
-<template>
-  <button v-touch="touchOptions">
-    {{ msg }}
-  </button>
-</template>
-<script>
-  export default {
-    data() {
+``` js
+new Vue({
+  el: '#app',
+  template: `<div class="container">
+    tap: {{ tapNum }},<br>
+    dbTap: {{ dbTapNum }},<br>
+    press: {{ pressNum }},<br>
+    swipeLeft: {{ swipeLeftNum }},<br>
+    swipeRight: {{ swipeRightNum }},<br>
+    swipeUp: {{ swipeUpNum }},<br>
+    swipeDown: {{ swipeDownNum }}
+    <br>
+		<br>
+    <button class="my-btn" v-touch="touch">
+      {{ msg }}
+    </button>
+    <br>
+    <br>
+    <button class="btn btn-default" @click="toggle('x')">toggle x ({{ x }})</button>
+    <button class="btn btn-default" @click="toggle('y')">toggle y ({{ y }})</button>
+  </div>`,
+  data() {
+    return {
+      msg: 'try to touch, move, swipe, press me!',
+      x: false,
+      y: false,
+      tapNum: 0,
+      dbTapNum: 0,
+      pressNum: 0,
+      swipeLeftNum: 0,
+      swipeRightNum: 0,
+      swipeUpNum: 0,
+      swipeDownNum: 0
+    }
+  },
+  computed: {
+    touch() {
       return {
-        msg: 'try to move me!'
-      }
-    },
-    computed: {
-      touchOptions() {
-        return {
-          x: false,
-          y: false,
-          handler: {
-            tap() {
-              console.log('tap')
-            },
-            dbTap() {
-              console.log('dbTap')
-            },
-            press() {
-              console.log('press')
-            },
-            swipeLeft() {
-              console.log('swipeLeft')
-            },
-            swipeRight() {
-              console.log('swipeRight')
-            },
-            swipeUp() {
-              console.log('swipeUp')
-            },
-            swipeDown() {
-              console.log('swipeDown')
-            }
-          }
-        }
+        x: this.x,
+        y: this.y,
+        context: this,
+        methods: true
       }
     }
+  },
+  methods: {
+    toggle(prop) {
+        this[prop] = !this[prop]
+      },
+      tap() {
+        this.tapNum++
+      },
+      dbTap() {
+        this.dbTapNum++
+      },
+      press() {
+        this.pressNum++
+      },
+      swipeLeft() {
+        this.swipeLeftNum++
+      },
+      swipeRight() {
+        this.swipeRightNum++
+      },
+      swipeUp() {
+        this.swipeUpNum++
+      },
+      swipeDown() {
+        this.swipeDownNum++
+      }
   }
-</script>
+})
 ```
 
 ## Document
