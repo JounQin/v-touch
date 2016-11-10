@@ -1,6 +1,6 @@
 {
   "name": "v-touch",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A full-featured gesture component designed for Vue",
   "main": "index.js",
   "repository": {

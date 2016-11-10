@@ -17,7 +17,6 @@ new Vue({
   template: `<div class="container">
     tap: {{ tapNum }},<br>
     dblTap: {{ dblTapNum }},<br>
-    dblTap: {{ dblTapNum }},<br>
     mltTap: {{ mltTapNum }}, lastMltTapped: {{ lastMltTapped }}<br>
     press: {{ pressNum }},<br>
     swipeLeft: {{ swipeLeftNum }},<br>

@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 0.1.4
+ * Version 0.1.5
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
