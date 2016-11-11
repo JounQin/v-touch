@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 0.1.7
+ * Version 0.1.8
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -209,7 +209,7 @@ function init(el, _ref) {
       swipeDown = _ref2.swipeDown;
 
   var $el = touchSupport ? el : document;
-  var wrapEvent = function wrapEvent(e, params) {
+  var wrapEvent = function wrapEvent(e) {
     return Object.defineProperties(e, {
       currentTarget: {
         value: el,
@@ -342,8 +342,8 @@ function init(el, _ref) {
               cancelBubble: true
             };
             var prefix = isSingle ? '' : 'dbl';
-            if (touchSupport && false === e.target.dispatchEvent(new Event(prefix + 'click', eventInit))) return;
-            if (false === e.target.dispatchEvent(new Event(prefix + 'tap', eventInit))) return;
+            if (touchSupport && e.target.dispatchEvent(new Event(prefix + 'click', eventInit)) === false) return;
+            if (e.target.dispatchEvent(new Event(prefix + 'tap', eventInit)) === false) return;
           } else if (isPrevent(mltTap, Object.assign(endEvent, { tapped: tapped }))) return;
           isPrevent(end, endEvent);
         }, 200);

@@ -15,55 +15,56 @@ A deadly simply example:
 new Vue({
   el: '#app',
   template: `<div class="container">
-    tap: {{ tapNum }},<br>
-    dblTap: {{ dblTapNum }},<br>
-    mltTap: {{ mltTapNum }}, lastMltTapped: {{ lastMltTapped }}<br>
-    press: {{ pressNum }},<br>
-    swipeLeft: {{ swipeLeftNum }},<br>
-    swipeRight: {{ swipeRightNum }},<br>
-    swipeUp: {{ swipeUpNum }},<br>
-    swipeDown: {{ swipeDownNum }}
-    <br>
-		<br>
-    <button class="my-btn" v-touch="touch">
-      {{ msg }}
-    </button>
-    <br>
-    <br>
-    <button class="btn btn-default" @click="toggle('x')">toggle x ({{ x }})</button>
-    <button class="btn btn-default" @click="toggle('y')">toggle y ({{ y }})</button>
-  </div>`,
+  tap: {{ tapNum }},<br>
+  dblTap: {{ dblTapNum }},<br>
+  mltTap: {{ mltTapNum }}, lastMltTapped: {{ lastMltTapped }}<br>
+  press: {{ pressNum }},<br>
+  swipeLeft: {{ swipeLeftNum }},<br>
+  swipeRight: {{ swipeRightNum }},<br>
+  swipeUp: {{ swipeUpNum }},<br>
+  swipeDown: {{ swipeDownNum }}
+  <br>
+  <div v-touch="touch" @dblclick="dblclickOuter">
+    <button class="my-btn" @tap="click">{{ msg }}</button>
+    <div @dblclick="dblclick">
+      <button class="my-btn">Just Another Button</button>
+    </div>
+  </div>
+  <br>
+  <br>
+  <button class="btn btn-default" @click="toggle('x')">toggle x ({{ x }})</button>
+  <button class="btn btn-default" @click="toggle('y')">toggle y ({{ y }})</button>
+</div>`,
   data() {
-    return {
-      msg: 'try to touch, move, swipe, press me!',
-      x: false,
-      y: false,
-      tapNum: 0,
-      dblTapNum: 0,
-      mltTapNum: 0,
-      lastMltTapped: 0,
-      pressNum: 0,
-      swipeLeftNum: 0,
-      swipeRightNum: 0,
-      swipeUpNum: 0,
-      swipeDownNum: 0
-    }
-  },
-  computed: {
-    touch() {
       return {
-        x: this.x,
-        y: this.y,
-        context: this,
-        methods: true
+        msg: 'try to touch, move, swipe, press me!',
+        x: false,
+        y: false,
+        tapNum: 0,
+        dblTapNum: 0,
+        mltTapNum: 0,
+        lastMltTapped: 0,
+        pressNum: 0,
+        swipeLeftNum: 0,
+        swipeRightNum: 0,
+        swipeUpNum: 0,
+        swipeDownNum: 0
       }
-    }
-  },
-  methods: {
-    toggle(prop) {
+    },
+    computed: {
+      touch() {
+        return {
+          x: this.x,
+          y: this.y,
+          methods: true
+        }
+      }
+    },
+    methods: {
+      toggle(prop) {
         this[prop] = !this[prop]
       },
-      tap() {
+      tap(e) {
         this.tapNum++
       },
       dblTap() {
@@ -87,8 +88,17 @@ new Vue({
       },
       swipeDown() {
         this.swipeDownNum++
+      },
+      click() {
+        console.log('clicked the first button')
+      },
+      dblclick() {
+        console.log('dblclicked the second one')
+      },
+      dblclickOuter() {
+        console.log('dblclicked')
       }
-  }
+    }
 })
 ```
 
