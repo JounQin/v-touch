@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 0.1.5
+ * Version 0.1.6
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -180,7 +180,7 @@ var isPreventFunc = function isPreventFunc(context) {
       params[_key - 1] = arguments[_key];
     }
 
-    return !!(event && event.apply(context, params) === false);
+    return event && event.apply(context, params) === false;
   };
 };
 
@@ -190,15 +190,10 @@ function init(el, _ref) {
       prevent = _ref$modifiers.prevent,
       stop = _ref$modifiers.stop;
 
+  var isPrevent = isPreventFunc(this);
   value = Object.assign({}, DEFAULT_OPTIONS, value);
 
-  var _value = value,
-      context = _value.context,
-      methods = _value.methods;
-
-  var isPrevent = isPreventFunc(context);
-
-  var _ref2 = context && methods ? context : value,
+  var _ref2 = value.methods ? this : value,
       start = _ref2.start,
       moveStart = _ref2.moveStart,
       moving = _ref2.moving,
@@ -214,7 +209,15 @@ function init(el, _ref) {
       swipeDown = _ref2.swipeDown;
 
   var $el = touchSupport ? el : document;
-  var eventParam = Object.create({}, { currentTarget: { value: el, writable: false } });
+  var eventParam = Object.create({}, {
+    currentTarget: {
+      value: el,
+      readable: true,
+      writable: false,
+      enumerable: true,
+      configurable: true
+    }
+  });
   var wrapEvent = function wrapEvent(e, params) {
     return Object.assign(e, eventParam, params);
   };
@@ -331,8 +334,14 @@ function init(el, _ref) {
           var tapped = el._tapped;
           delete el._tapped;
           if (tapped < 3) {
-            var tapEvent = tapped === 1 ? tap : dblTap;
+            var isSingle = tapped === 1;
+            var tapEvent = isSingle ? tap : dblTap;
             if (isPrevent(tapEvent, endEvent)) return;
+            if (false === e.target.dispatchEvent(new Event((isSingle ? '' : 'dbl') + 'click', {
+              bubbles: true,
+              cancelable: true,
+              cancelBubble: true
+            }))) return;
           } else if (isPrevent(mltTap, Object.assign(endEvent, { tapped: tapped }))) return;
           isPrevent(end, endEvent);
         }, 200);
@@ -352,10 +361,10 @@ function destroy(el, binding) {
 var resizeTimeoutId = void 0;
 
 exports.default = {
-  bind: function bind(el, binding) {
-    var _this = this;
+  bind: function bind(el, binding, vnode) {
+    var context = vnode.context;
 
-    init.call(this, el, binding);
+    init.call(context, el, binding);
 
     _utils2.default.on(window, 'resize', el.eResize = function () {
       clearTimeout(resizeTimeoutId);
@@ -363,16 +372,18 @@ exports.default = {
       resizeTimeoutId = setTimeout(function () {
         var newTouchSupport = isTouchSupport();
         if (touchSupport === newTouchSupport) return;
-        destroy.call(_this, el, true);
+        destroy.call(context, el, true);
         touchSupport = newTouchSupport;
         EVENTS = BASE_EVENTS[+touchSupport];
-        init.call(_this, el, binding);
+        init.call(context, el, binding);
       }, 300);
     });
   },
-  update: function update(el, binding) {
-    destroy.call(this, el, true);
-    init.call(this, el, binding);
+  update: function update(el, binding, vnode) {
+    var context = vnode.context;
+
+    destroy.call(context, el, true);
+    init.call(context, el, binding);
   },
 
   unbind: destroy
