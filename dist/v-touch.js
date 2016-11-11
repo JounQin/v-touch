@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 0.1.6
+ * Version 0.1.7
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -209,17 +209,16 @@ function init(el, _ref) {
       swipeDown = _ref2.swipeDown;
 
   var $el = touchSupport ? el : document;
-  var eventParam = Object.create({}, {
-    currentTarget: {
-      value: el,
-      readable: true,
-      writable: false,
-      enumerable: true,
-      configurable: true
-    }
-  });
   var wrapEvent = function wrapEvent(e, params) {
-    return Object.assign(e, eventParam, params);
+    return Object.defineProperties(e, {
+      currentTarget: {
+        value: el,
+        readable: true,
+        writable: true,
+        enumerable: true,
+        configurable: true
+      }
+    });
   };
 
   _utils2.default.on(el, EVENTS.start, el.eStart = function (e) {
@@ -337,11 +336,14 @@ function init(el, _ref) {
             var isSingle = tapped === 1;
             var tapEvent = isSingle ? tap : dblTap;
             if (isPrevent(tapEvent, endEvent)) return;
-            if (false === e.target.dispatchEvent(new Event((isSingle ? '' : 'dbl') + 'click', {
+            var eventInit = {
               bubbles: true,
               cancelable: true,
               cancelBubble: true
-            }))) return;
+            };
+            var prefix = isSingle ? '' : 'dbl';
+            if (touchSupport && false === e.target.dispatchEvent(new Event(prefix + 'click', eventInit))) return;
+            if (false === e.target.dispatchEvent(new Event(prefix + 'tap', eventInit))) return;
           } else if (isPrevent(mltTap, Object.assign(endEvent, { tapped: tapped }))) return;
           isPrevent(end, endEvent);
         }, 200);
