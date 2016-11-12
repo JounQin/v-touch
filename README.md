@@ -11,6 +11,8 @@ A deadly simply example:
 
 [see this on jsfiddle](https://jsfiddle.net/JounQin/ysvozkLo/)
 
+If you are also working with `vue-touch`, you can use `Vue.use(VTouch, {name: 'move'})` (or something else), so that the directive name will change to `v-move`!
+
 ``` js
 new Vue({
   el: '#app',
