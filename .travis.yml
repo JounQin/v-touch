@@ -23,7 +23,7 @@ install:
 - yarn
 
 script:
-- yarn run dist
+- yarn dist
 
 deploy:
   provider: npm
