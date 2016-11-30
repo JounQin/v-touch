@@ -250,7 +250,7 @@ function init(el, _ref) {
       el._moveStarted = true;
     }
 
-    isPrevent(moving, Object.assign(wrappedEvent, {
+    el._moveStarted && isPrevent(moving, Object.assign(wrappedEvent, {
       changedX: changedX,
       changedY: changedY
     }));
