@@ -23,7 +23,7 @@ export default {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel'
+        loader: 'babel-loader'
       }
     ]
   },
