@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 0.1.8
+ * Version 1.0.0
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -160,10 +160,6 @@ var BASE_EVENTS = [{
 var EVENTS = BASE_EVENTS[+touchSupport];
 
 var DEFAULT_OPTIONS = {
-  x: false,
-  y: false,
-  speed: 1,
-  context: undefined,
   methods: false
 };
 
@@ -228,13 +224,11 @@ function init(el, _ref) {
     Object.assign(el, {
       _clientX: e.clientX,
       _clientY: e.clientY,
-      _translate: (0, _utils.getTranslate)(el),
       _startTime: +new Date()
     });
     isPrevent(start, wrapEvent(e)) && (el._doNotMove = true);
   }).on($el, EVENTS.move, el.eMove = function (e) {
-    var originalTranslate = el._translate;
-    if (!originalTranslate || el._doNotMove) return;
+    if (el._doNotMove) return;
     e = actualEvent(e, prevent, stop);
 
     var _e = e,
@@ -242,8 +236,6 @@ function init(el, _ref) {
         clientY = _e.clientY;
     var originalClientX = el._clientX,
         originalClientY = el._clientY;
-    var originalTranslateX = originalTranslate.x,
-        originalTranslateY = originalTranslate.y;
 
 
     var changedX = clientX - originalClientX;
@@ -258,28 +250,15 @@ function init(el, _ref) {
       el._moveStarted = true;
     }
 
-    var translateX = value.x ? originalTranslateX + value.speed * changedX : originalTranslateX;
-    var translateY = value.y ? originalTranslateY + value.speed * changedY : originalTranslateY;
-
-    var movingEvent = Object.assign(wrappedEvent, {
-      translateX: translateX,
-      translateY: translateY,
+    isPrevent(moving, Object.assign(wrappedEvent, {
       changedX: changedX,
       changedY: changedY
-    });
-
-    if (isPrevent(moving, movingEvent)) return;
-
-    translateX = movingEvent.translateX;
-    translateY = movingEvent.translateY;
-
-    (0, _utils.translate)(el, translateX, translateY);
+    }));
   }).on($el, EVENTS.end, el.eEnd = function (e) {
     e = actualEvent(e, prevent, stop);
 
     var clientX = el._clientX,
         clientY = el._clientY,
-        translate = el._translate,
         moved = el._moved,
         startTime = el._startTime;
 
@@ -290,9 +269,6 @@ function init(el, _ref) {
     delete el._moved;
     delete el._moveStarted;
     delete el._startTime;
-    delete el._translate;
-
-    if (!translate) return;
 
     var endEvent = wrapEvent(e);
 
@@ -304,53 +280,51 @@ function init(el, _ref) {
 
       if (isPrevent(moveEnd, endEvent)) return;
 
-      if (!value.x && !value.y) {
-        var absChangedX = Math.abs(changedX);
-        var absChangedY = Math.abs(changedY);
+      var absChangedX = Math.abs(changedX);
+      var absChangedY = Math.abs(changedY);
 
-        var event = void 0;
-        if (absChangedX < 20) {
-          if (changedY > 50) {
-            event = swipeDown;
-          } else if (changedY < -50) {
-            event = swipeUp;
-          }
-        } else if (absChangedY < 20) {
-          if (changedX > 50) {
-            event = swipeRight;
-          } else if (changedX < -50) {
-            event = swipeLeft;
-          }
+      var event = void 0;
+      if (absChangedX < 20) {
+        if (changedY > 50) {
+          event = swipeDown;
+        } else if (changedY < -50) {
+          event = swipeUp;
         }
-        if (isPrevent(event, endEvent)) return;
+      } else if (absChangedY < 20) {
+        if (changedX > 50) {
+          event = swipeRight;
+        } else if (changedX < -50) {
+          event = swipeLeft;
+        }
       }
-    } else {
-      var duration = +new Date() - startTime;
-      el._tapped = el._tapped + 1 || 1;
+      if (isPrevent(event, endEvent)) return;
 
-      if (duration < 200) {
-        return tapTimeoutId = setTimeout(function () {
-          var tapped = el._tapped;
-          delete el._tapped;
-          if (tapped < 3) {
-            var isSingle = tapped === 1;
-            var tapEvent = isSingle ? tap : dblTap;
-            if (isPrevent(tapEvent, endEvent)) return;
-            var eventInit = {
-              bubbles: true,
-              cancelable: true,
-              cancelBubble: true
-            };
-            var prefix = isSingle ? '' : 'dbl';
-            if (touchSupport && e.target.dispatchEvent(new Event(prefix + 'click', eventInit)) === false) return;
-            if (e.target.dispatchEvent(new Event(prefix + 'tap', eventInit)) === false) return;
-          } else if (isPrevent(mltTap, Object.assign(endEvent, { tapped: tapped }))) return;
-          isPrevent(end, endEvent);
-        }, 200);
-      } else if (isPrevent(press, endEvent)) return;
+      return isPrevent(end, endEvent);
     }
 
-    isPrevent(end, endEvent);
+    var duration = +new Date() - startTime;
+    el._tapped = el._tapped + 1 || 1;
+
+    if (duration > 200) return isPrevent(press, endEvent) && isPrevent(end, endEvent);
+
+    tapTimeoutId = setTimeout(function () {
+      var tapped = el._tapped;
+      delete el._tapped;
+      if (tapped < 3) {
+        var isSingle = tapped === 1;
+        var tapEvent = isSingle ? tap : dblTap;
+        if (isPrevent(tapEvent, endEvent)) return;
+        var eventInit = {
+          bubbles: true,
+          cancelable: true,
+          cancelBubble: true
+        };
+        var prefix = isSingle ? '' : 'dbl';
+        if (touchSupport && e.target.dispatchEvent(new Event(prefix + 'click', eventInit)) === false) return;
+        if (e.target.dispatchEvent(new Event(prefix + 'tap', eventInit)) === false) return;
+      } else if (isPrevent(mltTap, Object.assign(endEvent, { tapped: tapped }))) return;
+      isPrevent(end, endEvent);
+    }, 200);
   });
 }
 
@@ -381,12 +355,6 @@ exports.default = {
       }, 300);
     });
   },
-  update: function update(el, binding, vnode) {
-    var context = vnode.context;
-
-    destroy.call(context, el, true);
-    init.call(context, el, binding);
-  },
 
   unbind: destroy
 };
@@ -402,13 +370,8 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getTranslate3d = exports.getTranslate = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 exports.on = on;
 exports.off = off;
-exports.translate = translate;
 
 var _base = __webpack_require__(0);
 
@@ -429,60 +392,6 @@ function off(el, events, handler) {
   });
   return this;
 }
-
-function translate(el, x, y, z) {
-  var args = void 0;
-  if (arguments.length === 2 && x !== null && (0, _base.isObject)(x) && (args = x)) {
-    x = args.x;
-    y = args.y;
-    z = args.z;
-  }
-
-  var translate = getTranslate3d(el);
-
-  x == null && (x = translate.x);
-  y == null && (y = translate.y);
-  z == null && (z = translate.z);
-
-  el.style.transform = 'translate3d(' + x + 'px, ' + y + 'px, ' + z + 'px)';
-
-  return this;
-}
-
-var getTranslate = exports.getTranslate = function getTranslate(el) {
-  var matrix = getComputedStyle(el).transform;
-
-  if (!matrix.indexOf('matrix3d')) {
-    var _getTranslate3d = getTranslate3d(el),
-        x = _getTranslate3d.x,
-        y = _getTranslate3d.y;
-
-    return { x: x, y: y };
-  } else if (matrix.indexOf('matrix') === -1) return { x: 0, y: 0 };
-
-  var matrixArr = matrix.substring(7, matrix.length - 1).split(',');
-  return {
-    x: +matrixArr[4],
-    y: +matrixArr[5]
-  };
-};
-
-var getTranslate3d = exports.getTranslate3d = function getTranslate3d(el) {
-  var matrix = getComputedStyle(el).transform;
-
-  if (matrix.indexOf('matrix3d') === -1) {
-    return _extends({}, getTranslate(el), {
-      z: 0
-    });
-  }
-
-  var matrixArr = matrix.substring(9, matrix.length - 1).split(/, */);
-  return {
-    x: +matrixArr[12],
-    y: +matrixArr[13],
-    z: +matrixArr[14]
-  };
-};
 
 /***/ },
 /* 4 */
