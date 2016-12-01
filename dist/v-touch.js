@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 1.0.3
+ * Version 1.0.4
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -145,8 +145,6 @@ var isTouchSupport = function isTouchSupport() {
   return !!('ontouchstart' in window && navigator.userAgent.toLowerCase().match(/mobile|tablet/) || window.DocumentTouch && document instanceof window.DocumentTouch || window.navigator['msPointerEnabled'] && window.navigator['msMaxTouchPoints'] > 0 || window.navigator['pointerEnabled'] && window.navigator['maxTouchPoints'] > 0 || false);
 };
 
-var touchSupport = isTouchSupport();
-
 var BASE_EVENTS = [{
   start: 'mousedown',
   move: 'mousemove',
@@ -157,16 +155,17 @@ var BASE_EVENTS = [{
   end: 'touchend'
 }];
 
-var EVENTS = BASE_EVENTS[+touchSupport];
-
 var DEFAULT_OPTIONS = {
   methods: false
 };
 
+var touchSupport = void 0,
+    EVENTS = void 0;
+
 var actualEvent = function actualEvent(e, prevent, stop) {
   prevent && e.preventDefault && e.preventDefault();
   stop && e.stopPropagation && e.stopPropagation();
-  return touchSupport ? e.changedTouches[0] : e;
+  return touchSupport && e.changedTouches ? e.changedTouches[0] : e;
 };
 
 var tapTimeoutId = void 0;
@@ -338,6 +337,8 @@ var resizeTimeoutId = void 0;
 
 exports.default = {
   bind: function bind(el, binding, vnode) {
+    touchSupport = isTouchSupport();
+    EVENTS = BASE_EVENTS[+touchSupport];
     var context = vnode.context;
 
     init.call(context, el, binding);
