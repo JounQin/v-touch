@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 1.0.4
+ * Version 1.0.5
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -227,7 +227,7 @@ function init(el, _ref) {
     });
     isPrevent(start, wrapEvent(e)) && (el._doNotMove = true);
   }).on($el, EVENTS.move, el.eMove = function (e) {
-    if (el._doNotMove) return;
+    if (!el._startTime || el._doNotMove) return;
     e = actualEvent(e, prevent, stop);
 
     var _e = e,
@@ -254,6 +254,7 @@ function init(el, _ref) {
       changedY: changedY
     }));
   }).on($el, EVENTS.end, el.eEnd = function (e) {
+    if (!el._startTime) return;
     e = actualEvent(e, prevent, stop);
 
     var clientX = el._clientX,
