@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 1.0.5
+ * Version 1.0.6
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -80,52 +80,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var trueType = exports.trueType = function trueType(value) {
-  return [].slice.call({}.toString.call(value), 8, -1).join('');
-};
-
-var trueTypeFunc = exports.trueTypeFunc = function trueTypeFunc(type) {
-  return function (value) {
-    return type === trueType(value);
-  };
-};
-
-['Arguments', 'Array', 'Boolean', 'Date', 'Error', 'Function', 'Map', 'Null', 'Object', 'RegExp', 'Set', 'String', 'Symbol', 'Undefined'].forEach(function (type) {
-  return module.exports['is' + type] = trueTypeFunc(type);
-});
-
-/***/ },
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var modulesContext = __webpack_require__(4);
-
-exports.default = modulesContext.keys().reduce(function (modules, key) {
-  return Object.assign(modules, modulesContext(key));
-}, {});
-module.exports = exports['default'];
-
-/***/ },
-/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -363,66 +322,29 @@ exports.default = {
 module.exports = exports['default'];
 
 /***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/* 1 */
+/***/ function(module, exports) {
 
 "use strict";
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.on = on;
-exports.off = off;
-
-var _base = __webpack_require__(0);
-
-function on(el, events, handler) {
-  var useCapture = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-
-  events.trim().split(' ').forEach(function (event) {
-    return el.addEventListener(event, handler, useCapture);
-  });
-  return this;
-}
-
-function off(el, events, handler) {
-  var useCapture = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-
-  events.trim().split(' ').forEach(function (event) {
-    return el.removeEventListener(event, handler, useCapture);
-  });
-  return this;
-}
+exports.default = {
+  on: function on(el, event, handler) {
+    el.addEventListener(event, handler, false);
+    return this;
+  },
+  off: function off(el, event, handler) {
+    el.removeEventListener(event, handler, false);
+    return this;
+  }
+};
+module.exports = exports["default"];
 
 /***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-var map = {
-	"./base.js": 0,
-	"./dom.js": 3,
-	"./index.js": 1
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 4;
-
-
-/***/ },
-/* 5 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -432,7 +354,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _touch = __webpack_require__(2);
+var _touch = __webpack_require__(0);
 
 var _touch2 = _interopRequireDefault(_touch);
 

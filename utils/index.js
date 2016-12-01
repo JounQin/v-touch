@@ -1,3 +1,10 @@
-const modulesContext = require.context('.', false, /\.js$/)
-
-export default modulesContext.keys().reduce((modules, key) => Object.assign(modules, modulesContext(key)), {})
+export default {
+  on(el, event, handler) {
+    el.addEventListener(event, handler, false)
+    return this
+  },
+  off(el, event, handler) {
+    el.removeEventListener(event, handler, false)
+    return this
+  }
+}
