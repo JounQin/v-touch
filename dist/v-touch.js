@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 1.0.6
+ * Version 1.0.7
  * 
  * Copyright (C) 2016 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -101,7 +101,7 @@ var _utils2 = _interopRequireDefault(_utils);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var isTouchSupport = function isTouchSupport() {
-  return !!('ontouchstart' in window && navigator.userAgent.toLowerCase().match(/mobile|tablet/) || window.DocumentTouch && document instanceof window.DocumentTouch || window.navigator['msPointerEnabled'] && window.navigator['msMaxTouchPoints'] > 0 || window.navigator['pointerEnabled'] && window.navigator['maxTouchPoints'] > 0 || false);
+  return !!('ontouchstart' in window && navigator.userAgent.match(/android|mobile|phone|tablet/i) || window.DocumentTouch && document instanceof window.DocumentTouch || navigator['msPointerEnabled'] && navigator['msMaxTouchPoints'] > 0 || navigator['pointerEnabled'] && navigator['maxTouchPoints'] > 0 || false);
 };
 
 var BASE_EVENTS = [{
