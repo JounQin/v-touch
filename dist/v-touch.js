@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 1.1.0
+ * Version 1.1.1
  * 
  * Copyright (C) 2016-2017 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -91,6 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__utils__);
 
 
 var MOUSE_DOWN = 'mousedown';
@@ -194,8 +195,8 @@ function init(el, _ref) {
 
   el.eEnd = function (e) {
     if (e.type === MOUSE_UP) {
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* off */])(document, MOUSE_MOVE, el.eMove);
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* off */])(document, MOUSE_UP, el.eEnd);
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(document, MOUSE_MOVE, el.eMove);
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(document, MOUSE_UP, el.eEnd);
     }
 
     if (!el._startTime) return;
@@ -282,14 +283,14 @@ function init(el, _ref) {
     }, 200);
   };
 
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* on */])(el, EVENTS.start, el.eStart = function (e) {
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, EVENTS.start, el.eStart = function (e) {
     clearTimeout(el._timeout);
 
     var isMouseDown = e.type === MOUSE_DOWN;
 
     if (isMouseDown) {
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* on */])(document, MOUSE_MOVE, el.eMove);
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* on */])(document, MOUSE_UP, el.eEnd);
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(document, MOUSE_MOVE, el.eMove);
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(document, MOUSE_UP, el.eEnd);
     }
 
     e = actualEvent(e, isMouseDown ? prevent : true, stop).event;
@@ -303,14 +304,14 @@ function init(el, _ref) {
     isPrevent(start, wrapEvent(e)) && (el._doNotMove = true);
   });
 
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* on */])(el, EVENTS.move, el.eMove);
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* on */])(el, EVENTS.end, el.eEnd);
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, EVENTS.move, el.eMove);
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, EVENTS.end, el.eEnd);
 }
 
 function destroy(el) {
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* off */])(el, EVENTS.start, el.eStart);
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* off */])(el, EVENTS.move, el.eMove);
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* off */])(el, EVENTS.end, el.eEnd);
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, EVENTS.start, el.eStart);
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, EVENTS.move, el.eMove);
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, EVENTS.end, el.eEnd);
 }
 
 /* harmony default export */ exports["a"] = {
@@ -325,17 +326,15 @@ function destroy(el) {
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return on; });
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return off; });
-var on = function on(el, event, handler) {
-  return el.addEventListener(event, handler, false);
-};
-var off = function off(el, event, handler) {
-  return el.removeEventListener(event, handler, false);
-};
+['on', 'off'].forEach(function (val, index) {
+  module.exports[val] = function (el, events, handler) {
+    return events.trim().split(' ').forEach(function (event) {
+      return event && el[(index ? 'remove' : 'add') + 'EventListener'](event, handler, false);
+    });
+  };
+});
 
 /***/ },
 /* 2 */
