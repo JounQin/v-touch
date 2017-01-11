@@ -1,12 +1,12 @@
-import webpack from 'webpack'
-import pkg from '../package.json'
+const webpack = require('webpack')
+const pkg = require('../package.json')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
 const plugins = [new webpack.BannerPlugin({
   banner: `${pkg.name} -- ${pkg.description}
 Version ${pkg.version}\n
-Copyright (C) 2016 ${pkg.author}
+Copyright (C) 2016-2017 ${pkg.author}
 Released under the ${pkg.license} license\n
 Github: ${pkg.repository.url}`,
   entryOnly: true
@@ -14,7 +14,7 @@ Github: ${pkg.repository.url}`,
 
 isProduction && plugins.push(new webpack.optimize.UglifyJsPlugin())
 
-export default {
+module.exports = {
   target: 'web',
   entry: {
     'v-touch': './lib/index.js'

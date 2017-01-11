@@ -1,8 +1,8 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 1.0.7
+ * Version 1.1.0
  * 
- * Copyright (C) 2016 JounQin <admin@1stg.me>
+ * Copyright (C) 2016-2017 JounQin <admin@1stg.me>
  * Released under the MIT license
  * 
  * Github: https://github.com/JounQin/v-touch
@@ -52,16 +52,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 
-/******/ 	// identity function for calling harmory imports with the correct context
+/******/ 	// identity function for calling harmony imports with the correct context
 /******/ 	__webpack_require__.i = function(value) { return value; };
 
-/******/ 	// define getter function for harmory exports
+/******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		Object.defineProperty(exports, name, {
-/******/ 			configurable: false,
-/******/ 			enumerable: true,
-/******/ 			get: getter
-/******/ 		});
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
 /******/ 	};
 
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -88,63 +90,49 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-'use strict';
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(1);
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var _utils = __webpack_require__(1);
+var MOUSE_DOWN = 'mousedown';
+var MOUSE_MOVE = 'mousemove';
+var MOUSE_UP = 'mouseup';
 
-var _utils2 = _interopRequireDefault(_utils);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var isTouchSupport = function isTouchSupport() {
-  return !!('ontouchstart' in window && navigator.userAgent.match(/android|mobile|phone|tablet/i) || window.DocumentTouch && document instanceof window.DocumentTouch || navigator['msPointerEnabled'] && navigator['msMaxTouchPoints'] > 0 || navigator['pointerEnabled'] && navigator['maxTouchPoints'] > 0 || false);
-};
-
-var BASE_EVENTS = [{
-  start: 'mousedown',
-  move: 'mousemove',
-  end: 'mouseup'
-}, {
-  start: 'touchstart',
+var EVENTS = {
+  start: 'touchstart ' + MOUSE_DOWN,
   move: 'touchmove',
-  end: 'touchend'
-}];
+  end: 'touchend touchcancel'
+};
 
 var DEFAULT_OPTIONS = {
   methods: false
 };
 
-var touchSupport = void 0,
-    EVENTS = void 0;
-
 var actualEvent = function actualEvent(e, prevent, stop) {
   prevent && e.preventDefault && e.preventDefault();
   stop && e.stopPropagation && e.stopPropagation();
-  return touchSupport && e.changedTouches ? e.changedTouches[0] : e;
-};
-
-var tapTimeoutId = void 0;
-var isPreventFunc = function isPreventFunc(context) {
-  return function (event) {
-    for (var _len = arguments.length, params = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      params[_key - 1] = arguments[_key];
-    }
-
-    return event && event.apply(context, params) === false;
+  var touches = e.changedTouches;
+  return {
+    event: touches ? touches[0] : e,
+    support: !!touches
   };
 };
 
 function init(el, _ref) {
+  var _this = this;
+
   var value = _ref.value,
       _ref$modifiers = _ref.modifiers,
       prevent = _ref$modifiers.prevent,
       stop = _ref$modifiers.stop;
 
-  var isPrevent = isPreventFunc(this);
+  var isPrevent = function isPrevent(event) {
+    for (var _len = arguments.length, params = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      params[_key - 1] = arguments[_key];
+    }
+
+    return event && event.apply(_this, params) === false;
+  };
+
   value = Object.assign({}, DEFAULT_OPTIONS, value);
 
   var _ref2 = value.methods ? this : value,
@@ -162,7 +150,6 @@ function init(el, _ref) {
       swipeUp = _ref2.swipeUp,
       swipeDown = _ref2.swipeDown;
 
-  var $el = touchSupport ? el : document;
   var wrapEvent = function wrapEvent(e) {
     return Object.defineProperties(e, {
       currentTarget: {
@@ -175,19 +162,10 @@ function init(el, _ref) {
     });
   };
 
-  _utils2.default.on(el, EVENTS.start, el.eStart = function (e) {
-    clearTimeout(tapTimeoutId);
-
-    e = actualEvent(e, true, stop);
-    Object.assign(el, {
-      _clientX: e.clientX,
-      _clientY: e.clientY,
-      _startTime: +new Date()
-    });
-    isPrevent(start, wrapEvent(e)) && (el._doNotMove = true);
-  }).on($el, EVENTS.move, el.eMove = function (e) {
+  el.eMove = function (e) {
     if (!el._startTime || el._doNotMove) return;
-    e = actualEvent(e, prevent, stop);
+
+    e = actualEvent(e, prevent, stop).event;
 
     var _e = e,
         clientX = _e.clientX,
@@ -212,14 +190,23 @@ function init(el, _ref) {
       changedX: changedX,
       changedY: changedY
     }));
-  }).on($el, EVENTS.end, el.eEnd = function (e) {
-    if (!el._startTime) return;
-    e = actualEvent(e, prevent, stop);
+  };
 
-    var clientX = el._clientX,
-        clientY = el._clientY,
-        moved = el._moved,
-        startTime = el._startTime;
+  el.eEnd = function (e) {
+    if (e.type === MOUSE_UP) {
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* off */])(document, MOUSE_MOVE, el.eMove);
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* off */])(document, MOUSE_UP, el.eEnd);
+    }
+
+    if (!el._startTime) return;
+
+    var actual = actualEvent(e, prevent, stop);
+    e = actual.event;
+
+    var _clientX = el._clientX,
+        _clientY = el._clientY,
+        _moved = el._moved,
+        _startTime = el._startTime;
 
 
     delete el._clientX;
@@ -231,9 +218,9 @@ function init(el, _ref) {
 
     var endEvent = wrapEvent(e);
 
-    if (moved) {
-      var changedX = e.clientX - clientX;
-      var changedY = e.clientY - clientY;
+    if (_moved) {
+      var changedX = e.clientX - _clientX;
+      var changedY = e.clientY - _clientY;
 
       Object.assign(endEvent, { changedX: changedX, changedY: changedY });
 
@@ -261,104 +248,103 @@ function init(el, _ref) {
       return isPrevent(end, endEvent);
     }
 
-    var duration = +new Date() - startTime;
+    var duration = +new Date() - _startTime;
+
     el._tapped = el._tapped + 1 || 1;
 
     if (duration > 200) return isPrevent(press, endEvent) && isPrevent(end, endEvent);
 
-    tapTimeoutId = setTimeout(function () {
+    el._timeout = setTimeout(function () {
       var tapped = el._tapped;
+
       delete el._tapped;
+      delete el._timeout;
+
       if (tapped < 3) {
         var isSingle = tapped === 1;
         var tapEvent = isSingle ? tap : dblTap;
+
         if (isPrevent(tapEvent, endEvent)) return;
+
         var eventInit = {
           bubbles: true,
           cancelable: true,
           cancelBubble: true
         };
+
         var prefix = isSingle ? '' : 'dbl';
-        if (touchSupport && e.target.dispatchEvent(new Event(prefix + 'click', eventInit)) === false) return;
+
+        if (actual.support && e.target.dispatchEvent(new Event(prefix + 'click', eventInit)) === false) return;
+
         if (e.target.dispatchEvent(new Event(prefix + 'tap', eventInit)) === false) return;
       } else if (isPrevent(mltTap, Object.assign(endEvent, { tapped: tapped }))) return;
       isPrevent(end, endEvent);
     }, 200);
+  };
+
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* on */])(el, EVENTS.start, el.eStart = function (e) {
+    clearTimeout(el._timeout);
+
+    var isMouseDown = e.type === MOUSE_DOWN;
+
+    if (isMouseDown) {
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* on */])(document, MOUSE_MOVE, el.eMove);
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* on */])(document, MOUSE_UP, el.eEnd);
+    }
+
+    e = actualEvent(e, isMouseDown ? prevent : true, stop).event;
+
+    Object.assign(el, {
+      _clientX: e.clientX,
+      _clientY: e.clientY,
+      _startTime: +new Date()
+    });
+
+    isPrevent(start, wrapEvent(e)) && (el._doNotMove = true);
   });
+
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* on */])(el, EVENTS.move, el.eMove);
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* on */])(el, EVENTS.end, el.eEnd);
 }
 
-function destroy(el, binding) {
-  var $el = touchSupport ? el : document;
-  _utils2.default.off(el, EVENTS.start, el.eStart).off($el, EVENTS.move, el.eMove).off($el, EVENTS.end, el.eEnd);
-  binding === true || _utils2.default.off(window, 'resize', el.eResize);
+function destroy(el) {
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* off */])(el, EVENTS.start, el.eStart);
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* off */])(el, EVENTS.move, el.eMove);
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* off */])(el, EVENTS.end, el.eEnd);
 }
 
-var resizeTimeoutId = void 0;
-
-exports.default = {
+/* harmony default export */ exports["a"] = {
   bind: function bind(el, binding, vnode) {
-    touchSupport = isTouchSupport();
-    EVENTS = BASE_EVENTS[+touchSupport];
     var context = vnode.context;
 
     init.call(context, el, binding);
-
-    _utils2.default.on(window, 'resize', el.eResize = function () {
-      clearTimeout(resizeTimeoutId);
-
-      resizeTimeoutId = setTimeout(function () {
-        var newTouchSupport = isTouchSupport();
-        if (touchSupport === newTouchSupport) return;
-        destroy.call(context, el, true);
-        touchSupport = newTouchSupport;
-        EVENTS = BASE_EVENTS[+touchSupport];
-        init.call(context, el, binding);
-      }, 300);
-    });
   },
 
   unbind: destroy
 };
-module.exports = exports['default'];
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  on: function on(el, event, handler) {
-    el.addEventListener(event, handler, false);
-    return this;
-  },
-  off: function off(el, event, handler) {
-    el.removeEventListener(event, handler, false);
-    return this;
-  }
+/* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return on; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return off; });
+var on = function on(el, event, handler) {
+  return el.addEventListener(event, handler, false);
 };
-module.exports = exports["default"];
+var off = function off(el, event, handler) {
+  return el.removeEventListener(event, handler, false);
+};
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-'use strict';
+Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__touch__ = __webpack_require__(0);
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _touch = __webpack_require__(0);
-
-var _touch2 = _interopRequireDefault(_touch);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var installed = false;
 
@@ -368,16 +354,14 @@ var VTouch = {
 
     if (installed) return;
     installed = true;
-    Vue.directive(options.name || 'touch', _touch2.default);
+    Vue.directive(options.name || 'touch', __WEBPACK_IMPORTED_MODULE_0__touch__["a" /* default */]);
   }
 };
 
-window.Vue && window.Vue.use(VTouch);
+typeof window !== 'undefined' && window.Vue && window.Vue.use(VTouch);
 
-exports.default = VTouch;
-module.exports = exports['default'];
+/* harmony default export */ exports["default"] = VTouch;
 
 /***/ }
-/******/ ])
+/******/ ]);
 });
-;
