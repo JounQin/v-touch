@@ -1,4 +1,6 @@
 # v-touch
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/JounQin/v-touch.svg)](https://greenkeeper.io/)
 A full-featured gesture component designed for Vue
 
 ~~__*This module is still working in progress right now, so it is just for placeholder.*__~~
