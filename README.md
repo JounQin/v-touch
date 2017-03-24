@@ -1,6 +1,9 @@
 # v-touch
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/JounQin/v-touch.svg)](https://greenkeeper.io/)
+[![dependencies](https://david-dm.org/JounQin/v-touch.svg)](https://david-dm.org/JounQin/v-touch)
+[![devDependency Status](https://david-dm.org/JounQin/v-touch/dev-status.svg)](https://david-dm.org/JounQin/v-touch?type=dev)
+
 A full-featured gesture component designed for Vue
 
 ~~__*This module is still working in progress right now, so it is just for placeholder.*__~~

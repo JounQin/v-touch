@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const path = require('path')
 const pkg = require('../package.json')
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -28,7 +29,7 @@ module.exports = {
     ]
   },
   output: {
-    path: 'dist',
+    path: path.resolve('../dist'),
     filename: `[name]${isProduction ? '.min' : ''}.js`,
     libraryTarget: 'umd',
     library: 'VTouch'
