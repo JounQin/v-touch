@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 1.1.1
+ * Version 1.2.0
  * 
  * Copyright (C) 2016-2017 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -20,41 +20,41 @@
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-
+/******/
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
 /******/ 			exports: {}
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.l = true;
-
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
+/******/
 /******/ 	// identity function for calling harmony imports with the correct context
 /******/ 	__webpack_require__.i = function(value) { return value; };
-
+/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -65,7 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 			});
 /******/ 		}
 /******/ 	};
-
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -74,23 +74,23 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
 /******/ 	};
-
+/******/
 /******/ 	// Object.prototype.hasOwnProperty.call
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__utils__);
 
 
@@ -105,7 +105,8 @@ var EVENTS = {
 };
 
 var DEFAULT_OPTIONS = {
-  methods: false
+  methods: false,
+  enable: true
 };
 
 var actualEvent = function actualEvent(e, prevent, stop) {
@@ -136,6 +137,8 @@ function init(el, _ref) {
 
   value = Object.assign({}, DEFAULT_OPTIONS, value);
 
+  if (!value.enable) return;
+
   var _ref2 = value.methods ? this : value,
       start = _ref2.start,
       moveStart = _ref2.moveStart,
@@ -146,6 +149,7 @@ function init(el, _ref) {
       dblTap = _ref2.dblTap,
       mltTap = _ref2.mltTap,
       press = _ref2.press,
+      pressing = _ref2.pressing,
       swipeLeft = _ref2.swipeLeft,
       swipeRight = _ref2.swipeRight,
       swipeUp = _ref2.swipeUp,
@@ -161,6 +165,10 @@ function init(el, _ref) {
         configurable: true
       }
     });
+  };
+
+  var removeInterval = function removeInterval() {
+    return el._interval && (clearInterval(el._interval) || delete el._interval);
   };
 
   el.eMove = function (e) {
@@ -187,13 +195,16 @@ function init(el, _ref) {
       el._moveStarted = true;
     }
 
-    el._moveStarted && isPrevent(moving, Object.assign(wrappedEvent, {
-      changedX: changedX,
-      changedY: changedY
-    }));
+    if (!el._moveStarted) return;
+
+    removeInterval();
+
+    isPrevent(moving, Object.assign(wrappedEvent, { changedX: changedX, changedY: changedY }));
   };
 
   el.eEnd = function (e) {
+    removeInterval();
+
     if (e.type === MOUSE_UP) {
       __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(document, MOUSE_MOVE, el.eMove);
       __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(document, MOUSE_UP, el.eEnd);
@@ -285,6 +296,7 @@ function init(el, _ref) {
 
   __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, EVENTS.start, el.eStart = function (e) {
     clearTimeout(el._timeout);
+    removeInterval();
 
     var isMouseDown = e.type === MOUSE_DOWN;
 
@@ -301,7 +313,13 @@ function init(el, _ref) {
       _startTime: +new Date()
     });
 
-    isPrevent(start, wrapEvent(e)) && (el._doNotMove = true);
+    var wrappedEvent = wrapEvent(e);
+
+    isPrevent(start, wrappedEvent) && (el._doNotMove = true);
+
+    el._interval = setInterval(function () {
+      return el._startTime ? isPrevent(pressing, wrappedEvent) : removeInterval();
+    }, 200);
   });
 
   __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, EVENTS.move, el.eMove);
@@ -314,7 +332,7 @@ function destroy(el) {
   __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, EVENTS.end, el.eEnd);
 }
 
-/* harmony default export */ exports["a"] = {
+/* harmony default export */ __webpack_exports__["a"] = ({
   bind: function bind(el, binding, vnode) {
     var context = vnode.context;
 
@@ -322,26 +340,14 @@ function destroy(el) {
   },
 
   unbind: destroy
-};
-
-/***/ },
-/* 1 */
-/***/ function(module, exports) {
-
-['on', 'off'].forEach(function (val, index) {
-  module.exports[val] = function (el, events, handler) {
-    return events.trim().split(' ').forEach(function (event) {
-      return event && el[(index ? 'remove' : 'add') + 'EventListener'](event, handler, false);
-    });
-  };
 });
 
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__touch__ = __webpack_require__(0);
 
 
@@ -359,8 +365,20 @@ var VTouch = {
 
 typeof window !== 'undefined' && window.Vue && window.Vue.use(VTouch);
 
-/* harmony default export */ exports["default"] = VTouch;
+/* harmony default export */ __webpack_exports__["default"] = (VTouch);
 
-/***/ }
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+['on', 'off'].forEach(function (val, index) {
+  module.exports[val] = function (el, events, handler) {
+    return events.trim().split(' ').forEach(function (event) {
+      return event && el[(index ? 'remove' : 'add') + 'EventListener'](event, handler, false);
+    });
+  };
+});
+
+/***/ })
 /******/ ]);
 });

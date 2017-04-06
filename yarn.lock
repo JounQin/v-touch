@@ -110,8 +110,8 @@ async-each@^1.0.0:
   resolved "http://registry.npm.taobao.org/async-each/download/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
 
 async@^2.1.2:
-  version "2.2.0"
-  resolved "http://registry.npm.taobao.org/async/download/async-2.2.0.tgz#c324eba010a237e4fbd55a12dee86367d5c0ef32"
+  version "2.3.0"
+  resolved "http://registry.npm.taobao.org/async/download/async-2.3.0.tgz#1013d1051047dd320fe24e494d5c66ecaf6147d9"
   dependencies:
     lodash "^4.14.0"
 
@@ -135,18 +135,18 @@ babel-code-frame@7.0.0-alpha.3:
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-babel-core@7.0.0-alpha.6, babel-core@^7.0.0-alpha.6:
-  version "7.0.0-alpha.6"
-  resolved "http://registry.npm.taobao.org/babel-core/download/babel-core-7.0.0-alpha.6.tgz#a4c59f5cd5ef0374365a37937e5c585510eed718"
+babel-core@7.0.0-alpha.7, babel-core@^7.0.0-alpha.6:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-core/download/babel-core-7.0.0-alpha.7.tgz#714bde734537de00dce30bae27432ed52cc2aac3"
   dependencies:
     babel-code-frame "7.0.0-alpha.3"
-    babel-generator "7.0.0-alpha.3"
-    babel-helpers "7.0.0-alpha.3"
+    babel-generator "7.0.0-alpha.7"
+    babel-helpers "7.0.0-alpha.7"
     babel-messages "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
-    babel-traverse "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
-    babylon "7.0.0-beta.7"
+    babel-template "7.0.0-alpha.7"
+    babel-traverse "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
+    babylon "7.0.0-beta.8"
     convert-source-map "^1.1.0"
     debug "^2.1.1"
     json5 "^0.5.0"
@@ -157,66 +157,66 @@ babel-core@7.0.0-alpha.6, babel-core@^7.0.0-alpha.6:
     slash "^1.0.0"
     source-map "^0.5.0"
 
-babel-generator@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-generator/download/babel-generator-7.0.0-alpha.3.tgz#92af29b9e75fbe6888ef0d28b39e34f9ec83a06c"
+babel-generator@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-generator/download/babel-generator-7.0.0-alpha.7.tgz#80f6b833063fe6445c29fa1b38fe6bc057425f0f"
   dependencies:
     babel-messages "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-types "7.0.0-alpha.7"
     detect-indent "^4.0.0"
     jsesc "^1.3.0"
     lodash "^4.2.0"
     source-map "^0.5.0"
     trim-right "^1.0.1"
 
-babel-helper-call-delegate@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-helper-call-delegate/download/babel-helper-call-delegate-7.0.0-alpha.3.tgz#23c12acd22ade7ed05b27a51ad2c7d1016929dbf"
+babel-helper-call-delegate@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-helper-call-delegate/download/babel-helper-call-delegate-7.0.0-alpha.7.tgz#694f10551d74fc582394b5372f5386d67bfe0349"
   dependencies:
-    babel-helper-hoist-variables "7.0.0-alpha.3"
-    babel-traverse "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-helper-hoist-variables "7.0.0-alpha.7"
+    babel-traverse "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
 
-babel-helper-define-map@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-helper-define-map/download/babel-helper-define-map-7.0.0-alpha.3.tgz#1d67803d202440e70ed10ddff74600e143be50fa"
+babel-helper-define-map@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-helper-define-map/download/babel-helper-define-map-7.0.0-alpha.7.tgz#92971c4cc24426dffe8946fd83a4b994e7e672dd"
   dependencies:
-    babel-helper-function-name "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-helper-function-name "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
     lodash "^4.2.0"
 
-babel-helper-function-name@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-helper-function-name/download/babel-helper-function-name-7.0.0-alpha.3.tgz#c20acaadfff6632b7c7efccab31d60d5e8e59814"
+babel-helper-function-name@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-helper-function-name/download/babel-helper-function-name-7.0.0-alpha.7.tgz#19aecddc5402f941c5726802993077b41ea9832d"
   dependencies:
-    babel-helper-get-function-arity "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
-    babel-traverse "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-helper-get-function-arity "7.0.0-alpha.7"
+    babel-template "7.0.0-alpha.7"
+    babel-traverse "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
 
-babel-helper-get-function-arity@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-helper-get-function-arity/download/babel-helper-get-function-arity-7.0.0-alpha.3.tgz#e2c2db48d65300da135cabd91d8e9629b07ca5e8"
+babel-helper-get-function-arity@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-helper-get-function-arity/download/babel-helper-get-function-arity-7.0.0-alpha.7.tgz#16e6526ecefc5537826012365e577de2ccba02f5"
   dependencies:
-    babel-types "7.0.0-alpha.3"
+    babel-types "7.0.0-alpha.7"
 
-babel-helper-hoist-variables@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-helper-hoist-variables/download/babel-helper-hoist-variables-7.0.0-alpha.3.tgz#6bd71cdea55d848877acf14c3751b8598c0fd198"
+babel-helper-hoist-variables@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-helper-hoist-variables/download/babel-helper-hoist-variables-7.0.0-alpha.7.tgz#79251e91183322c656d210677a509b642165b8e8"
   dependencies:
-    babel-types "7.0.0-alpha.3"
+    babel-types "7.0.0-alpha.7"
 
-babel-helper-optimise-call-expression@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-helper-optimise-call-expression/download/babel-helper-optimise-call-expression-7.0.0-alpha.3.tgz#a3c5ba4a5e59c651c74f9e17351ff8d4093f13b2"
+babel-helper-optimise-call-expression@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-helper-optimise-call-expression/download/babel-helper-optimise-call-expression-7.0.0-alpha.7.tgz#87af3403ee4a23e2b5d7800158b67a88ff55004a"
   dependencies:
-    babel-types "7.0.0-alpha.3"
+    babel-types "7.0.0-alpha.7"
 
-babel-helper-regex@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-helper-regex/download/babel-helper-regex-7.0.0-alpha.3.tgz#c74440fc1418b6e92290c4880e15e3738f31a366"
+babel-helper-regex@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-helper-regex/download/babel-helper-regex-7.0.0-alpha.7.tgz#fbf219c2a79a08a360525e3048a44ba53d163575"
   dependencies:
-    babel-types "7.0.0-alpha.3"
+    babel-types "7.0.0-alpha.7"
     lodash "^4.2.0"
 
 babel-helper-regex@^6.18.0:
@@ -227,30 +227,30 @@ babel-helper-regex@^6.18.0:
     babel-types "^6.22.0"
     lodash "^4.2.0"
 
-babel-helper-remap-async-to-generator@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-helper-remap-async-to-generator/download/babel-helper-remap-async-to-generator-7.0.0-alpha.3.tgz#9b137a1222a186f1cfb6fa292af5d302085e1aa7"
+babel-helper-remap-async-to-generator@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-helper-remap-async-to-generator/download/babel-helper-remap-async-to-generator-7.0.0-alpha.7.tgz#c1436c4cb0d8c01f65f0a055098a05df24d53c7c"
   dependencies:
-    babel-helper-function-name "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
-    babel-traverse "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-helper-function-name "7.0.0-alpha.7"
+    babel-template "7.0.0-alpha.7"
+    babel-traverse "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
 
-babel-helper-replace-supers@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-helper-replace-supers/download/babel-helper-replace-supers-7.0.0-alpha.3.tgz#04c701909509867fa84bceeb2b0e51b34cf2d657"
+babel-helper-replace-supers@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-helper-replace-supers/download/babel-helper-replace-supers-7.0.0-alpha.7.tgz#73ceb5bfeb597ff2c2772a75f0aa013be58e78fe"
   dependencies:
-    babel-helper-optimise-call-expression "7.0.0-alpha.3"
+    babel-helper-optimise-call-expression "7.0.0-alpha.7"
     babel-messages "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
-    babel-traverse "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-template "7.0.0-alpha.7"
+    babel-traverse "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
 
-babel-helpers@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-helpers/download/babel-helpers-7.0.0-alpha.3.tgz#e9a5362d84bfa6730dca16f762e185a077afc45e"
+babel-helpers@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-helpers/download/babel-helpers-7.0.0-alpha.7.tgz#1640077af095fd516bec82527466fb17348b057a"
   dependencies:
-    babel-template "7.0.0-alpha.3"
+    babel-template "7.0.0-alpha.7"
 
 babel-loader@^7.0.0-beta.1:
   version "7.0.0-beta.1"
@@ -264,9 +264,9 @@ babel-messages@7.0.0-alpha.3:
   version "7.0.0-alpha.3"
   resolved "http://registry.npm.taobao.org/babel-messages/download/babel-messages-7.0.0-alpha.3.tgz#c8390a468478b8384da134612e12a6bc31a684e9"
 
-babel-plugin-check-es2015-constants@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-check-es2015-constants/download/babel-plugin-check-es2015-constants-7.0.0-alpha.3.tgz#bc83e61842bf8769515e7f69cb43cf7f2546aaba"
+babel-plugin-check-es2015-constants@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-check-es2015-constants/download/babel-plugin-check-es2015-constants-7.0.0-alpha.7.tgz#6089e4f6e8e58b87bb04085beeb4e77103ddee3e"
 
 babel-plugin-syntax-async-generators@7.0.0-alpha.3:
   version "7.0.0-alpha.3"
@@ -300,202 +300,201 @@ babel-plugin-syntax-object-rest-spread@7.0.0-alpha.3:
   version "7.0.0-alpha.3"
   resolved "http://registry.npm.taobao.org/babel-plugin-syntax-object-rest-spread/download/babel-plugin-syntax-object-rest-spread-7.0.0-alpha.3.tgz#52dd2698be335f1c0297d5d34ac526537ef63576"
 
-babel-plugin-transform-async-generator-functions@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-async-generator-functions/download/babel-plugin-transform-async-generator-functions-7.0.0-alpha.3.tgz#ba61d374ca649e9cf48f5ddb70c893d87d3af31e"
+babel-plugin-transform-async-generator-functions@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-async-generator-functions/download/babel-plugin-transform-async-generator-functions-7.0.0-alpha.7.tgz#da52dbbc22fd0ebe76ee212cbebfeefe7b6f5612"
   dependencies:
-    babel-helper-remap-async-to-generator "7.0.0-alpha.3"
+    babel-helper-remap-async-to-generator "7.0.0-alpha.7"
     babel-plugin-syntax-async-generators "7.0.0-alpha.3"
 
-babel-plugin-transform-class-properties@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-class-properties/download/babel-plugin-transform-class-properties-7.0.0-alpha.3.tgz#74b48911411c2e000a74c0c8a08bb8e36afb17df"
+babel-plugin-transform-class-properties@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-class-properties/download/babel-plugin-transform-class-properties-7.0.0-alpha.7.tgz#001c0ec773e52d2203f088b7484363df259242fe"
   dependencies:
-    babel-helper-function-name "7.0.0-alpha.3"
+    babel-helper-function-name "7.0.0-alpha.7"
     babel-plugin-syntax-class-properties "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
+    babel-template "7.0.0-alpha.7"
 
-babel-plugin-transform-decorators@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-decorators/download/babel-plugin-transform-decorators-7.0.0-alpha.3.tgz#a0d3586d399d59d8b43d14c8f5b87efe9f5d0ae2"
+babel-plugin-transform-decorators@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-decorators/download/babel-plugin-transform-decorators-7.0.0-alpha.7.tgz#baf4136bd6ac25534cfa5291dba397fa224c6455"
   dependencies:
     babel-plugin-syntax-decorators "7.0.0-alpha.3"
-    babel-runtime "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
+    babel-template "7.0.0-alpha.7"
 
-babel-plugin-transform-do-expressions@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-do-expressions/download/babel-plugin-transform-do-expressions-7.0.0-alpha.3.tgz#9a0442f5f8a6314d3c6e5f086ff6cade2fb3a382"
+babel-plugin-transform-do-expressions@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-do-expressions/download/babel-plugin-transform-do-expressions-7.0.0-alpha.7.tgz#598441ad3e430e95673defea5aaaf3571f87eafe"
   dependencies:
     babel-plugin-syntax-do-expressions "7.0.0-alpha.3"
 
-babel-plugin-transform-es2015-arrow-functions@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-arrow-functions/download/babel-plugin-transform-es2015-arrow-functions-7.0.0-alpha.3.tgz#1c07e322a1d6d58173f69e0a48f7b7e89a1d64ef"
+babel-plugin-transform-es2015-arrow-functions@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-arrow-functions/download/babel-plugin-transform-es2015-arrow-functions-7.0.0-alpha.7.tgz#5921b86f8ad9391177cb7ec8793bdf2daca1cc4b"
 
-babel-plugin-transform-es2015-block-scoped-functions@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-block-scoped-functions/download/babel-plugin-transform-es2015-block-scoped-functions-7.0.0-alpha.3.tgz#fa5f3f3715e05ec3a1ef2c1ec8bb1f1fe3a4ce0a"
+babel-plugin-transform-es2015-block-scoped-functions@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-block-scoped-functions/download/babel-plugin-transform-es2015-block-scoped-functions-7.0.0-alpha.7.tgz#c3409df41e449c075100c5ff602f98e065577f7a"
 
-babel-plugin-transform-es2015-block-scoping@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-block-scoping/download/babel-plugin-transform-es2015-block-scoping-7.0.0-alpha.3.tgz#8c939676d0be68ef55500455b785ed1b4c0160bd"
+babel-plugin-transform-es2015-block-scoping@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-block-scoping/download/babel-plugin-transform-es2015-block-scoping-7.0.0-alpha.7.tgz#b82115907057c2edcc379ee0b647f99afc73e36f"
   dependencies:
-    babel-template "7.0.0-alpha.3"
-    babel-traverse "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-template "7.0.0-alpha.7"
+    babel-traverse "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
     lodash "^4.2.0"
 
-babel-plugin-transform-es2015-classes@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-classes/download/babel-plugin-transform-es2015-classes-7.0.0-alpha.3.tgz#98e6fc79f1d3ac9ed2c51ee7c3f14d8c38ffe2c6"
+babel-plugin-transform-es2015-classes@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-classes/download/babel-plugin-transform-es2015-classes-7.0.0-alpha.7.tgz#f892baf5e6eec72dbebb3bc4a1466232a414a275"
   dependencies:
-    babel-helper-define-map "7.0.0-alpha.3"
-    babel-helper-function-name "7.0.0-alpha.3"
-    babel-helper-optimise-call-expression "7.0.0-alpha.3"
-    babel-helper-replace-supers "7.0.0-alpha.3"
+    babel-helper-define-map "7.0.0-alpha.7"
+    babel-helper-function-name "7.0.0-alpha.7"
+    babel-helper-optimise-call-expression "7.0.0-alpha.7"
+    babel-helper-replace-supers "7.0.0-alpha.7"
     babel-messages "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
-    babel-traverse "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-template "7.0.0-alpha.7"
+    babel-traverse "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-computed-properties@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-computed-properties/download/babel-plugin-transform-es2015-computed-properties-7.0.0-alpha.3.tgz#9577e8d3a45e63da5c5ddf14163fb2ef67bb26c8"
+babel-plugin-transform-es2015-computed-properties@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-computed-properties/download/babel-plugin-transform-es2015-computed-properties-7.0.0-alpha.7.tgz#88a3eb4a1e817044d35fd916d899f5b22ed7edd6"
   dependencies:
-    babel-template "7.0.0-alpha.3"
+    babel-template "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-destructuring@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-destructuring/download/babel-plugin-transform-es2015-destructuring-7.0.0-alpha.3.tgz#509333f153ba1b58fa1a4b48286cbdce11b028a0"
+babel-plugin-transform-es2015-destructuring@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-destructuring/download/babel-plugin-transform-es2015-destructuring-7.0.0-alpha.7.tgz#7a5a907cf67f824f6cc5e7832a3f16ba51abdc05"
 
-babel-plugin-transform-es2015-duplicate-keys@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-duplicate-keys/download/babel-plugin-transform-es2015-duplicate-keys-7.0.0-alpha.3.tgz#1a4add3548ffd64f209be62695409d3d616b0d64"
+babel-plugin-transform-es2015-duplicate-keys@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-duplicate-keys/download/babel-plugin-transform-es2015-duplicate-keys-7.0.0-alpha.7.tgz#6a522462f5123e45de1b6cb1c82cd30bcdea4f91"
   dependencies:
-    babel-types "7.0.0-alpha.3"
+    babel-types "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-for-of@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-for-of/download/babel-plugin-transform-es2015-for-of-7.0.0-alpha.3.tgz#6a959e8995a21ae796deaa2db7d74b7009a9dd79"
+babel-plugin-transform-es2015-for-of@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-for-of/download/babel-plugin-transform-es2015-for-of-7.0.0-alpha.7.tgz#3dd6e5dc5e98c5044b9cb616252e023b97477ef7"
 
-babel-plugin-transform-es2015-function-name@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-function-name/download/babel-plugin-transform-es2015-function-name-7.0.0-alpha.3.tgz#39d08ce84f45d7652f20a2123b556a9de24459c2"
+babel-plugin-transform-es2015-function-name@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-function-name/download/babel-plugin-transform-es2015-function-name-7.0.0-alpha.7.tgz#3b6ded23efaf1183de8d234b2bbdec650692924f"
   dependencies:
-    babel-helper-function-name "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-helper-function-name "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-literals@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-literals/download/babel-plugin-transform-es2015-literals-7.0.0-alpha.3.tgz#748048faebe88da55cad28e9c1d50c83e1eb0de7"
+babel-plugin-transform-es2015-literals@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-literals/download/babel-plugin-transform-es2015-literals-7.0.0-alpha.7.tgz#1c4e552be18f988874caac33c9e9a07e1417d1c6"
 
-babel-plugin-transform-es2015-modules-amd@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-modules-amd/download/babel-plugin-transform-es2015-modules-amd-7.0.0-alpha.3.tgz#960aa59d67e76948beea0cd2a5bb6771cea36c7f"
+babel-plugin-transform-es2015-modules-amd@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-modules-amd/download/babel-plugin-transform-es2015-modules-amd-7.0.0-alpha.7.tgz#29a01b92303036eabe120cfa8af1fd8a23fb41b0"
   dependencies:
-    babel-plugin-transform-es2015-modules-commonjs "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
+    babel-plugin-transform-es2015-modules-commonjs "7.0.0-alpha.7"
+    babel-template "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-modules-commonjs@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-modules-commonjs/download/babel-plugin-transform-es2015-modules-commonjs-7.0.0-alpha.3.tgz#9d5b06621da4f6f665345d4ecc86084f74f608ce"
+babel-plugin-transform-es2015-modules-commonjs@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-modules-commonjs/download/babel-plugin-transform-es2015-modules-commonjs-7.0.0-alpha.7.tgz#8980ff65ada36f8853950878c80e1ca4d1188e90"
   dependencies:
-    babel-plugin-transform-strict-mode "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-plugin-transform-strict-mode "7.0.0-alpha.7"
+    babel-template "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-modules-systemjs@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-modules-systemjs/download/babel-plugin-transform-es2015-modules-systemjs-7.0.0-alpha.3.tgz#b725ff684cf660001700fb9377b58940a6977b91"
+babel-plugin-transform-es2015-modules-systemjs@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-modules-systemjs/download/babel-plugin-transform-es2015-modules-systemjs-7.0.0-alpha.7.tgz#2e2ad4576e433c803e65297b1ca70ca68a432eff"
   dependencies:
-    babel-helper-hoist-variables "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
+    babel-helper-hoist-variables "7.0.0-alpha.7"
+    babel-template "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-modules-umd@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-modules-umd/download/babel-plugin-transform-es2015-modules-umd-7.0.0-alpha.3.tgz#ec37fa367540262900b0b14cda7f2006bb1e1430"
+babel-plugin-transform-es2015-modules-umd@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-modules-umd/download/babel-plugin-transform-es2015-modules-umd-7.0.0-alpha.7.tgz#cd73ec6d2f1d8a3492a5ce440a451b71f9dbacd5"
   dependencies:
-    babel-plugin-transform-es2015-modules-amd "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
+    babel-plugin-transform-es2015-modules-amd "7.0.0-alpha.7"
+    babel-template "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-object-super@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-object-super/download/babel-plugin-transform-es2015-object-super-7.0.0-alpha.3.tgz#b27368c505aa951656cc96749b485401da620429"
+babel-plugin-transform-es2015-object-super@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-object-super/download/babel-plugin-transform-es2015-object-super-7.0.0-alpha.7.tgz#0dd56a6bbea14523187c73cede1660280947e91e"
   dependencies:
-    babel-helper-replace-supers "7.0.0-alpha.3"
+    babel-helper-replace-supers "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-parameters@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-parameters/download/babel-plugin-transform-es2015-parameters-7.0.0-alpha.3.tgz#909e780d1e5bf9d972f80f389de95d45c36d40e6"
+babel-plugin-transform-es2015-parameters@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-parameters/download/babel-plugin-transform-es2015-parameters-7.0.0-alpha.7.tgz#9ff005a532110584e4bc1731ee613d1fc8ad69d1"
   dependencies:
-    babel-helper-call-delegate "7.0.0-alpha.3"
-    babel-helper-get-function-arity "7.0.0-alpha.3"
-    babel-template "7.0.0-alpha.3"
-    babel-traverse "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-helper-call-delegate "7.0.0-alpha.7"
+    babel-helper-get-function-arity "7.0.0-alpha.7"
+    babel-template "7.0.0-alpha.7"
+    babel-traverse "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-shorthand-properties@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-shorthand-properties/download/babel-plugin-transform-es2015-shorthand-properties-7.0.0-alpha.3.tgz#6c704d77495994c91f17f2e8e39d89fa6f3d978c"
+babel-plugin-transform-es2015-shorthand-properties@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-shorthand-properties/download/babel-plugin-transform-es2015-shorthand-properties-7.0.0-alpha.7.tgz#59678d452808584f62b3b196938673cdca560852"
   dependencies:
-    babel-types "7.0.0-alpha.3"
+    babel-types "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-spread@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-spread/download/babel-plugin-transform-es2015-spread-7.0.0-alpha.3.tgz#2d4b831e6b0e7c73e8201c38a824fe88d6168567"
+babel-plugin-transform-es2015-spread@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-spread/download/babel-plugin-transform-es2015-spread-7.0.0-alpha.7.tgz#6b5a26372b19e2e1d4c63af5e22d298c5c278f5d"
 
-babel-plugin-transform-es2015-sticky-regex@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-sticky-regex/download/babel-plugin-transform-es2015-sticky-regex-7.0.0-alpha.3.tgz#abc021c8ad9a9ced19c27b0d94d1817abf2a8a2b"
+babel-plugin-transform-es2015-sticky-regex@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-sticky-regex/download/babel-plugin-transform-es2015-sticky-regex-7.0.0-alpha.7.tgz#de71144b924c5c03da720c2982ade2a717b1fded"
   dependencies:
-    babel-helper-regex "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
+    babel-helper-regex "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
 
-babel-plugin-transform-es2015-template-literals@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-template-literals/download/babel-plugin-transform-es2015-template-literals-7.0.0-alpha.3.tgz#ccad4e75903dc5ee1989a5108b83740c80b3629a"
+babel-plugin-transform-es2015-template-literals@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-template-literals/download/babel-plugin-transform-es2015-template-literals-7.0.0-alpha.7.tgz#f8deb336f2314eac484d07801594b84c24363984"
 
-babel-plugin-transform-es2015-typeof-symbol@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-typeof-symbol/download/babel-plugin-transform-es2015-typeof-symbol-7.0.0-alpha.3.tgz#6592d301f2c40e5e943e5a3e26e56adc6db736ac"
+babel-plugin-transform-es2015-typeof-symbol@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-typeof-symbol/download/babel-plugin-transform-es2015-typeof-symbol-7.0.0-alpha.7.tgz#93af130f02ee1d23c554242a44ba45bd7c2d4fb1"
 
-babel-plugin-transform-es2015-unicode-regex@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-unicode-regex/download/babel-plugin-transform-es2015-unicode-regex-7.0.0-alpha.3.tgz#0c8acf70e05dcfceaf9c3bfa10f123a645c44bac"
+babel-plugin-transform-es2015-unicode-regex@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-es2015-unicode-regex/download/babel-plugin-transform-es2015-unicode-regex-7.0.0-alpha.7.tgz#13b92440afbd0cd088c19ba3becd340627b3eedc"
   dependencies:
-    babel-helper-regex "7.0.0-alpha.3"
+    babel-helper-regex "7.0.0-alpha.7"
     regexpu-core "^4.0.2"
 
-babel-plugin-transform-export-extensions@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-export-extensions/download/babel-plugin-transform-export-extensions-7.0.0-alpha.3.tgz#c5b9e386db077eb6f63f0d6cabeccbc399245d6d"
+babel-plugin-transform-export-extensions@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-export-extensions/download/babel-plugin-transform-export-extensions-7.0.0-alpha.7.tgz#606606b522bfe99faf8744f3784c7f113f69b55c"
   dependencies:
     babel-plugin-syntax-export-extensions "7.0.0-alpha.3"
 
-babel-plugin-transform-function-bind@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-function-bind/download/babel-plugin-transform-function-bind-7.0.0-alpha.3.tgz#1f10da630b4aeb2dc88ed368cd13cd54c70e7cec"
+babel-plugin-transform-function-bind@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-function-bind/download/babel-plugin-transform-function-bind-7.0.0-alpha.7.tgz#02f466c3a5c5fa584ffb5847024397fed7b2bbc1"
   dependencies:
     babel-plugin-syntax-function-bind "7.0.0-alpha.3"
 
-babel-plugin-transform-object-rest-spread@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-object-rest-spread/download/babel-plugin-transform-object-rest-spread-7.0.0-alpha.3.tgz#111a7e158ee02adf212933d9ad829f3d63eff207"
+babel-plugin-transform-object-rest-spread@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-object-rest-spread/download/babel-plugin-transform-object-rest-spread-7.0.0-alpha.7.tgz#90f09ea7b9f078fc9e333bbe144aac176eeee970"
   dependencies:
     babel-plugin-syntax-object-rest-spread "7.0.0-alpha.3"
 
-babel-plugin-transform-regenerator@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-regenerator/download/babel-plugin-transform-regenerator-7.0.0-alpha.3.tgz#5d76d87e8e1a0b73bf77aaefd704cdb535182a4e"
+babel-plugin-transform-regenerator@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-regenerator/download/babel-plugin-transform-regenerator-7.0.0-alpha.7.tgz#2a9ea26acbd7d63a379131667485b64f6ac9d0c2"
   dependencies:
     regenerator-transform "0.9.11"
 
-babel-plugin-transform-strict-mode@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-plugin-transform-strict-mode/download/babel-plugin-transform-strict-mode-7.0.0-alpha.3.tgz#308068db94074f368eac190a854ebaf43118e03f"
+babel-plugin-transform-strict-mode@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-plugin-transform-strict-mode/download/babel-plugin-transform-strict-mode-7.0.0-alpha.7.tgz#90b2812844e8f2b47d4da4fb98e892fd214e4fe5"
   dependencies:
-    babel-types "7.0.0-alpha.3"
+    babel-types "7.0.0-alpha.7"
 
 babel-plugin-transform-unicode-property-regex@^2.0.0:
   version "2.0.1"
@@ -506,83 +505,76 @@ babel-plugin-transform-unicode-property-regex@^2.0.0:
     regexpu-core "^4.0.4"
 
 babel-preset-es2015@^7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-preset-es2015/download/babel-preset-es2015-7.0.0-alpha.3.tgz#16534cf8dbc86369dbf5d6bb08c9d43101b81628"
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-preset-es2015/download/babel-preset-es2015-7.0.0-alpha.7.tgz#3494dc42a67498781654ded1390e5f476d6dafa8"
   dependencies:
-    babel-plugin-check-es2015-constants "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-arrow-functions "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-block-scoped-functions "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-block-scoping "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-classes "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-computed-properties "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-destructuring "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-duplicate-keys "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-for-of "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-function-name "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-literals "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-modules-amd "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-modules-commonjs "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-modules-systemjs "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-modules-umd "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-object-super "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-parameters "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-shorthand-properties "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-spread "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-sticky-regex "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-template-literals "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-typeof-symbol "7.0.0-alpha.3"
-    babel-plugin-transform-es2015-unicode-regex "7.0.0-alpha.3"
-    babel-plugin-transform-regenerator "7.0.0-alpha.3"
+    babel-plugin-check-es2015-constants "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-arrow-functions "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-block-scoped-functions "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-block-scoping "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-classes "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-computed-properties "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-destructuring "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-duplicate-keys "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-for-of "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-function-name "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-literals "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-modules-amd "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-modules-commonjs "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-modules-systemjs "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-modules-umd "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-object-super "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-parameters "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-shorthand-properties "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-spread "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-sticky-regex "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-template-literals "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-typeof-symbol "7.0.0-alpha.7"
+    babel-plugin-transform-es2015-unicode-regex "7.0.0-alpha.7"
+    babel-plugin-transform-regenerator "7.0.0-alpha.7"
 
 babel-preset-stage-0@^7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-preset-stage-0/download/babel-preset-stage-0-7.0.0-alpha.3.tgz#f2db6c2ec82975ca99b77c867d95d821d61e3731"
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-preset-stage-0/download/babel-preset-stage-0-7.0.0-alpha.7.tgz#ff37801bfa7aadef80b098505e07436bb12921b3"
   dependencies:
-    babel-plugin-transform-do-expressions "7.0.0-alpha.3"
-    babel-plugin-transform-function-bind "7.0.0-alpha.3"
-    babel-preset-stage-1 "7.0.0-alpha.3"
+    babel-plugin-transform-do-expressions "7.0.0-alpha.7"
+    babel-plugin-transform-function-bind "7.0.0-alpha.7"
+    babel-preset-stage-1 "7.0.0-alpha.7"
 
-babel-preset-stage-1@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-preset-stage-1/download/babel-preset-stage-1-7.0.0-alpha.3.tgz#2de86602a75aa3f908a4d16054a1a1b46756d897"
+babel-preset-stage-1@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-preset-stage-1/download/babel-preset-stage-1-7.0.0-alpha.7.tgz#045c7efb679b259ea13e919627340e85e816b3ae"
   dependencies:
-    babel-plugin-transform-decorators "7.0.0-alpha.3"
-    babel-plugin-transform-export-extensions "7.0.0-alpha.3"
-    babel-preset-stage-2 "7.0.0-alpha.3"
+    babel-plugin-transform-decorators "7.0.0-alpha.7"
+    babel-plugin-transform-export-extensions "7.0.0-alpha.7"
+    babel-preset-stage-2 "7.0.0-alpha.7"
 
-babel-preset-stage-2@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-preset-stage-2/download/babel-preset-stage-2-7.0.0-alpha.3.tgz#96fab02bced0c6f3a9fda031185abd23ae69a60b"
+babel-preset-stage-2@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-preset-stage-2/download/babel-preset-stage-2-7.0.0-alpha.7.tgz#351aeccb9c02c7cd99ea3341b7d8dafe66efdce4"
   dependencies:
     babel-plugin-syntax-dynamic-import "7.0.0-alpha.3"
-    babel-plugin-transform-class-properties "7.0.0-alpha.3"
+    babel-plugin-transform-class-properties "7.0.0-alpha.7"
     babel-plugin-transform-unicode-property-regex "^2.0.0"
-    babel-preset-stage-3 "7.0.0-alpha.3"
+    babel-preset-stage-3 "7.0.0-alpha.7"
 
-babel-preset-stage-3@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-preset-stage-3/download/babel-preset-stage-3-7.0.0-alpha.3.tgz#3196bf3699c980372bc9f260fa0db70786d4d4a1"
+babel-preset-stage-3@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-preset-stage-3/download/babel-preset-stage-3-7.0.0-alpha.7.tgz#fcc57d7ec8d4f072b65f2e33e4d6977e7750faf8"
   dependencies:
-    babel-plugin-transform-async-generator-functions "7.0.0-alpha.3"
-    babel-plugin-transform-object-rest-spread "7.0.0-alpha.3"
+    babel-plugin-transform-async-generator-functions "7.0.0-alpha.7"
+    babel-plugin-transform-object-rest-spread "7.0.0-alpha.7"
 
 babel-register@^7.0.0-alpha.6:
-  version "7.0.0-alpha.6"
-  resolved "http://registry.npm.taobao.org/babel-register/download/babel-register-7.0.0-alpha.6.tgz#adb337fdfca6d74c90d51232b5b3d8f532ca91bc"
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-register/download/babel-register-7.0.0-alpha.7.tgz#e3f1de53740f270052088f6fbbcd1b5ce3f0cdee"
   dependencies:
-    babel-core "7.0.0-alpha.6"
+    babel-core "7.0.0-alpha.7"
     core-js "^2.4.0"
     home-or-tmp "^3.0.0"
     lodash "^4.2.0"
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
-
-babel-runtime@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-runtime/download/babel-runtime-7.0.0-alpha.3.tgz#fb71839b64115026a014f62891bdff9bee71079f"
-  dependencies:
-    core-js "^2.4.0"
-    regenerator-runtime "^0.10.0"
 
 babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0:
   version "6.23.0"
@@ -591,31 +583,31 @@ babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0:
     core-js "^2.4.0"
     regenerator-runtime "^0.10.0"
 
-babel-template@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-template/download/babel-template-7.0.0-alpha.3.tgz#eff537d49216ae6e70722f3556a17cc3de62b117"
+babel-template@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-template/download/babel-template-7.0.0-alpha.7.tgz#82e26500980d1b3f14d9ebe8ae8b9325dc158392"
   dependencies:
-    babel-traverse "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
-    babylon "7.0.0-beta.7"
+    babel-traverse "7.0.0-alpha.7"
+    babel-types "7.0.0-alpha.7"
+    babylon "7.0.0-beta.8"
     lodash "^4.2.0"
 
-babel-traverse@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-traverse/download/babel-traverse-7.0.0-alpha.3.tgz#ac5bd86d101b410daf705ff4a6cbfc0123ca49f0"
+babel-traverse@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-traverse/download/babel-traverse-7.0.0-alpha.7.tgz#61cc89061b0ad0a5f9fc6df81117fac428bc4148"
   dependencies:
     babel-code-frame "7.0.0-alpha.3"
     babel-messages "7.0.0-alpha.3"
-    babel-types "7.0.0-alpha.3"
-    babylon "7.0.0-beta.7"
+    babel-types "7.0.0-alpha.7"
+    babylon "7.0.0-beta.8"
     debug "^2.2.0"
     globals "^9.0.0"
     invariant "^2.2.0"
     lodash "^4.2.0"
 
-babel-types@7.0.0-alpha.3:
-  version "7.0.0-alpha.3"
-  resolved "http://registry.npm.taobao.org/babel-types/download/babel-types-7.0.0-alpha.3.tgz#36c20f7a4e4d3f32fc00ab38893004a6f52b22a8"
+babel-types@7.0.0-alpha.7:
+  version "7.0.0-alpha.7"
+  resolved "http://registry.npm.taobao.org/babel-types/download/babel-types-7.0.0-alpha.7.tgz#4bdb77386d1f6e2001f42fa9ac21b6c3d6ad0d82"
   dependencies:
     esutils "^2.0.2"
     lodash "^4.2.0"
@@ -630,9 +622,9 @@ babel-types@^6.19.0, babel-types@^6.22.0:
     lodash "^4.2.0"
     to-fast-properties "^1.0.1"
 
-babylon@7.0.0-beta.7:
-  version "7.0.0-beta.7"
-  resolved "http://registry.npm.taobao.org/babylon/download/babylon-7.0.0-beta.7.tgz#61454c26b0e285ffe826dd237d5b5d179f602e16"
+babylon@7.0.0-beta.8:
+  version "7.0.0-beta.8"
+  resolved "http://registry.npm.taobao.org/babylon/download/babylon-7.0.0-beta.8.tgz#2bdc5ae366041442c27e068cce6f0d7c06ea9949"
 
 balanced-match@^0.4.1:
   version "0.4.2"
@@ -1630,8 +1622,8 @@ ms@0.7.2:
   resolved "http://registry.npm.taobao.org/ms/download/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
 
 nan@^2.3.0:
-  version "2.5.1"
-  resolved "http://registry.npm.taobao.org/nan/download/nan-2.5.1.tgz#d5b01691253326a97a2bbee9e61c55d8d60351e2"
+  version "2.6.1"
+  resolved "http://registry.npm.taobao.org/nan/download/nan-2.6.1.tgz#8c84f7b14c96b89f57fbc838012180ec8ca39a01"
 
 node-libs-browser@^2.0.0:
   version "2.0.0"
@@ -1907,8 +1899,8 @@ randombytes@^2.0.0, randombytes@^2.0.1:
   resolved "http://registry.npm.taobao.org/randombytes/download/randombytes-2.0.3.tgz#674c99760901c3c4112771a31e521dc349cc09ec"
 
 rc@^1.1.7:
-  version "1.2.0"
-  resolved "http://registry.npm.taobao.org/rc/download/rc-1.2.0.tgz#c7de973b7b46297c041366b2fd3d2363b1697c66"
+  version "1.2.1"
+  resolved "http://registry.npm.taobao.org/rc/download/rc-1.2.1.tgz#2e03e8e42ee450b8cb3dce65be1bf8974e1dfd95"
   dependencies:
     deep-extend "~0.4.0"
     ini "~1.3.0"
@@ -1930,7 +1922,7 @@ read-pkg@^1.0.0:
     normalize-package-data "^2.3.2"
     path-type "^1.0.0"
 
-"readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.1.0, readable-stream@^2.1.4:
+"readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.1.4, readable-stream@^2.2.6:
   version "2.2.6"
   resolved "http://registry.npm.taobao.org/readable-stream/download/readable-stream-2.2.6.tgz#8b43aed76e71483938d12a8d46c6cf1a00b1f816"
   dependencies:
@@ -2177,12 +2169,12 @@ stream-browserify@^2.0.1:
     readable-stream "^2.0.2"
 
 stream-http@^2.3.1:
-  version "2.6.3"
-  resolved "http://registry.npm.taobao.org/stream-http/download/stream-http-2.6.3.tgz#4c3ddbf9635968ea2cfd4e48d43de5def2625ac3"
+  version "2.7.0"
+  resolved "http://registry.npm.taobao.org/stream-http/download/stream-http-2.7.0.tgz#cec1f4e3b494bc4a81b451808970f8b20b4ed5f6"
   dependencies:
     builtin-status-codes "^3.0.0"
     inherits "^2.0.1"
-    readable-stream "^2.1.0"
+    readable-stream "^2.2.6"
     to-arraybuffer "^1.0.0"
     xtend "^4.0.0"
 
@@ -2292,8 +2284,8 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   resolved "http://registry.npm.taobao.org/tweetnacl/download/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
 uglify-js@^2.8.5:
-  version "2.8.18"
-  resolved "http://registry.npm.taobao.org/uglify-js/download/uglify-js-2.8.18.tgz#925d14bae48ab62d1883b41afe6e2261662adb8e"
+  version "2.8.21"
+  resolved "http://registry.npm.taobao.org/uglify-js/download/uglify-js-2.8.21.tgz#1733f669ae6f82fc90c7b25ec0f5c783ee375314"
   dependencies:
     source-map "~0.5.1"
     yargs "~3.10.0"
@@ -2389,8 +2381,8 @@ webpack-sources@^0.2.3:
     source-map "~0.5.3"
 
 webpack@^2.3.2:
-  version "2.3.2"
-  resolved "http://registry.npm.taobao.org/webpack/download/webpack-2.3.2.tgz#7d521e6f0777a3a58985c69425263fdfe977b458"
+  version "2.3.3"
+  resolved "http://registry.npm.taobao.org/webpack/download/webpack-2.3.3.tgz#eecc083c18fb7bf958ea4f40b57a6640c5a0cc78"
   dependencies:
     acorn "^4.0.4"
     acorn-dynamic-import "^2.0.0"

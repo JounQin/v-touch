@@ -29,7 +29,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve('../dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: `[name]${isProduction ? '.min' : ''}.js`,
     libraryTarget: 'umd',
     library: 'VTouch'
