@@ -34,7 +34,7 @@
     "babel-preset-es2015": "^7.0.0-alpha.3",
     "babel-preset-stage-0": "^7.0.0-alpha.3",
     "babel-register": "^7.0.0-alpha.6",
-    "cross-env": "^4.0.0",
+    "cross-env": "^5.0.0",
     "debug": "^2.6.3",
     "webpack": "^2.3.2"
   }
