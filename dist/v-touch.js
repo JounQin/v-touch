@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 1.3.0
+ * Version 1.4.0
  * 
  * Copyright (C) 2016-2017 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -92,6 +92,8 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__utils__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 
 
 var MOUSE_DOWN = 'mousedown';
@@ -109,6 +111,8 @@ var DEFAULT_OPTIONS = {
   enable: true
 };
 
+var MOUSE_EVENT_PROPS = ['altKey', 'button', 'buttons', 'clientX', 'clientY', 'ctrlKey', 'metaKey', 'movementX', 'movementY', 'region', 'relatedTarget', 'screenX', 'screenY', 'shiftKey', 'which'];
+
 var actualEvent = function actualEvent(e, prevent, stop) {
   prevent && e.preventDefault && e.preventDefault();
   stop && e.stopPropagation && e.stopPropagation();
@@ -119,24 +123,13 @@ var actualEvent = function actualEvent(e, prevent, stop) {
   };
 };
 
-var findLinkNode = function findLinkNode(el, _ref) {
-  var target = _ref.target;
-
-  var node = target;
-  do {
-    if (node.tagName.toLowerCase() === 'a') return node;
-    if (node === el) return;
-    node = node.parentNode;
-  } while (node !== el);
-};
-
-function init(el, _ref2) {
+function init(el, _ref) {
   var _this = this;
 
-  var value = _ref2.value,
-      _ref2$modifiers = _ref2.modifiers,
-      prevent = _ref2$modifiers.prevent,
-      stop = _ref2$modifiers.stop;
+  var value = _ref.value,
+      _ref$modifiers = _ref.modifiers,
+      prevent = _ref$modifiers.prevent,
+      stop = _ref$modifiers.stop;
 
   var isPrevent = function isPrevent(event, e) {
     if (!event) return;
@@ -147,21 +140,21 @@ function init(el, _ref2) {
 
   if (!value.enable) return;
 
-  var _ref3 = value.methods ? this : value,
-      start = _ref3.start,
-      moveStart = _ref3.moveStart,
-      moving = _ref3.moving,
-      moveEnd = _ref3.moveEnd,
-      end = _ref3.end,
-      tap = _ref3.tap,
-      dblTap = _ref3.dblTap,
-      mltTap = _ref3.mltTap,
-      press = _ref3.press,
-      pressing = _ref3.pressing,
-      swipeLeft = _ref3.swipeLeft,
-      swipeRight = _ref3.swipeRight,
-      swipeUp = _ref3.swipeUp,
-      swipeDown = _ref3.swipeDown;
+  var _ref2 = value.methods ? this : value,
+      start = _ref2.start,
+      moveStart = _ref2.moveStart,
+      moving = _ref2.moving,
+      moveEnd = _ref2.moveEnd,
+      end = _ref2.end,
+      tap = _ref2.tap,
+      dblTap = _ref2.dblTap,
+      mltTap = _ref2.mltTap,
+      press = _ref2.press,
+      pressing = _ref2.pressing,
+      swipeLeft = _ref2.swipeLeft,
+      swipeRight = _ref2.swipeRight,
+      swipeUp = _ref2.swipeUp,
+      swipeDown = _ref2.swipeDown;
 
   var wrapEvent = function wrapEvent(e) {
     return Object.defineProperties(e, {
@@ -295,28 +288,28 @@ function init(el, _ref2) {
           link.click();
         }
 
-        var eventInit = {
+        var eventInit = _extends({
           bubbles: true,
           cancelable: true,
           cancelBubble: true
-        };
+        }, MOUSE_EVENT_PROPS.reduce(function (event, prop) {
+          event[prop] = e[prop];
+          return event;
+        }, {}));
 
         var prefix = isSingle ? '' : 'dbl';
 
-        if (actual.support && (!isSingle || !_click)) {
-          var clickEv = new Event(prefix + 'click', eventInit);
-          var _e2 = e,
-              target = _e2.target;
+        var clickEv = new MouseEvent(prefix + 'click', eventInit);
+        isSingle && (clickEv._click = true);
 
-          target.dispatchEvent(clickEv);
-          if (clickEv.returnValue === false) return;
-        }
+        var _e2 = e,
+            target = _e2.target;
 
-        var tapEv = new Event(prefix + 'tap', eventInit);
+        if (target.dispatchEvent(clickEv) === false || clickEv.returnValue === false) return;
 
-        e.target.dispatchEvent(tapEv);
+        var tapEv = new MouseEvent(prefix + 'tap', eventInit);
 
-        if (tapEv.returnValue === false) return;
+        if (e.target.dispatchEvent(tapEv) === false || tapEv.returnValue === false) return;
       } else if (isPrevent(mltTap, Object.assign(endEvent, { tapped: tapped }))) return;
       isPrevent(end, endEvent);
     }, 200);
@@ -351,20 +344,23 @@ function init(el, _ref2) {
     }, 200);
   };
 
+  el.eClick = function (e) {
+    if (e._click) return delete e._click;
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, EVENTS.start, el.eStart);
   __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, EVENTS.move, el.eMove);
   __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, EVENTS.end, el.eEnd);
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, 'click', function (e) {
-    var link = findLinkNode(el, e);
-    if (!link) return;
-    link._click ? delete link._click : e.preventDefault();
-  });
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, 'click', el.eClick);
 }
 
 function destroy(el) {
   __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, EVENTS.start, el.eStart);
   __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, EVENTS.move, el.eMove);
   __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, EVENTS.end, el.eEnd);
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, 'click', el.eClick);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = ({
