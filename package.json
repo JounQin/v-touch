@@ -36,6 +36,6 @@
     "babel-register": "^7.0.0-alpha.10",
     "cross-env": "^5.0.0",
     "debug": "^2.6.8",
-    "webpack": "^2.6.1"
+    "webpack": "^3.0.0"
   }
 }
