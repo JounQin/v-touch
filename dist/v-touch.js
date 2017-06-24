@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 1.4.0
+ * Version 1.4.1
  * 
  * Copyright (C) 2016-2017 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -25,9 +25,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -51,9 +51,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
 /******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
@@ -82,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -90,7 +87,10 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(2);
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// CONCATENATED MODULE: ./lib/touch.js
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__utils__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -207,8 +207,8 @@ function init(el, _ref) {
     removeInterval();
 
     if (e.type === MOUSE_UP) {
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(document, MOUSE_MOVE, el.eMove);
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(document, MOUSE_UP, el.eEnd);
+      __WEBPACK_IMPORTED_MODULE_0__utils__["off"](document, MOUSE_MOVE, el.eMove);
+      __WEBPACK_IMPORTED_MODULE_0__utils__["off"](document, MOUSE_UP, el.eEnd);
     }
 
     if (!el._startTime) return;
@@ -323,8 +323,8 @@ function init(el, _ref) {
 
     if (isMouseDown) {
       e.target.tagName.toLowerCase() === 'img' && e.preventDefault();
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(document, MOUSE_MOVE, el.eMove);
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(document, MOUSE_UP, el.eEnd);
+      __WEBPACK_IMPORTED_MODULE_0__utils__["on"](document, MOUSE_MOVE, el.eMove);
+      __WEBPACK_IMPORTED_MODULE_0__utils__["on"](document, MOUSE_UP, el.eEnd);
     }
 
     e = actualEvent(e, isMouseDown ? prevent : true, stop).event;
@@ -350,20 +350,20 @@ function init(el, _ref) {
     e.stopPropagation();
   };
 
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, EVENTS.start, el.eStart);
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, EVENTS.move, el.eMove);
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, EVENTS.end, el.eEnd);
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["on"])(el, 'click', el.eClick);
+  __WEBPACK_IMPORTED_MODULE_0__utils__["on"](el, EVENTS.start, el.eStart);
+  __WEBPACK_IMPORTED_MODULE_0__utils__["on"](el, EVENTS.move, el.eMove);
+  __WEBPACK_IMPORTED_MODULE_0__utils__["on"](el, EVENTS.end, el.eEnd);
+  __WEBPACK_IMPORTED_MODULE_0__utils__["on"](el, 'click', el.eClick);
 }
 
 function destroy(el) {
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, EVENTS.start, el.eStart);
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, EVENTS.move, el.eMove);
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, EVENTS.end, el.eEnd);
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["off"])(el, 'click', el.eClick);
+  __WEBPACK_IMPORTED_MODULE_0__utils__["off"](el, EVENTS.start, el.eStart);
+  __WEBPACK_IMPORTED_MODULE_0__utils__["off"](el, EVENTS.move, el.eMove);
+  __WEBPACK_IMPORTED_MODULE_0__utils__["off"](el, EVENTS.end, el.eEnd);
+  __WEBPACK_IMPORTED_MODULE_0__utils__["off"](el, 'click', el.eClick);
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
+/* harmony default export */ var touch_defaultExport = ({
   bind: function bind(el, binding, vnode) {
     var context = vnode.context;
 
@@ -372,14 +372,7 @@ function destroy(el) {
 
   unbind: destroy
 });
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__touch__ = __webpack_require__(0);
+// CONCATENATED MODULE: ./lib/index.js
 
 
 var installed = false;
@@ -390,7 +383,7 @@ var VTouch = {
 
     if (installed) return;
     installed = true;
-    Vue.directive(options.name || 'touch', __WEBPACK_IMPORTED_MODULE_0__touch__["a" /* default */]);
+    Vue.directive(options.name || 'touch', touch_defaultExport);
   }
 };
 
@@ -399,7 +392,7 @@ typeof window !== 'undefined' && window.Vue && window.Vue.use(VTouch);
 /* harmony default export */ __webpack_exports__["default"] = (VTouch);
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports) {
 
 ['on', 'off'].forEach(function (val, index) {
