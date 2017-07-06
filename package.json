@@ -1,6 +1,6 @@
 {
   "name": "v-touch",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "A full-featured gesture component designed for Vue",
   "keywords": [
     "vue",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "babel-core": "^7.0.0-alpha.12",
-    "babel-loader": "^7.0.0",
+    "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^7.0.0-alpha.12",
     "babel-preset-stage-0": "^7.0.0-alpha.12",
     "babel-register": "^7.0.0-alpha.12",

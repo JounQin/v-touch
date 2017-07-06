@@ -18,7 +18,7 @@ before_install:
 - git config --global user.name 'JounQin'
 - git config --global user.email 'liujiaren1992@vip.qq.com'
 - npm i -g yarn
-- rm -rf .yarnrc yarn.lock
+- rm -rf yarn.lock
 
 install:
 - yarn

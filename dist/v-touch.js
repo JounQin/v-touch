@@ -1,6 +1,6 @@
 /*!
  * v-touch -- A full-featured gesture component designed for Vue
- * Version 1.4.1
+ * Version 1.5.0
  * 
  * Copyright (C) 2016-2017 JounQin <admin@1stg.me>
  * Released under the MIT license
@@ -261,7 +261,7 @@ function init(el, _ref) {
       return isPrevent(end, endEvent);
     }
 
-    var duration = +new Date() - _startTime;
+    var duration = Date.now() - _startTime;
 
     el._tapped = el._tapped + 1 || 1;
 
@@ -327,12 +327,12 @@ function init(el, _ref) {
       __WEBPACK_IMPORTED_MODULE_0__utils__["on"](document, MOUSE_UP, el.eEnd);
     }
 
-    e = actualEvent(e, isMouseDown ? prevent : true, stop).event;
+    e = actualEvent(e, isMouseDown ? prevent : /Android 4\./.test(navigator.userAgent) || prevent, stop).event;
 
     Object.assign(el, {
       _clientX: e.clientX,
       _clientY: e.clientY,
-      _startTime: +new Date()
+      _startTime: Date.now()
     });
 
     var wrappedEvent = wrapEvent(e);
