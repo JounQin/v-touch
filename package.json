@@ -35,7 +35,7 @@
     "babel-preset-stage-0": "^7.0.0-alpha.12",
     "babel-register": "^7.0.0-alpha.12",
     "cross-env": "^5.0.1",
-    "debug": "^2.6.8",
+    "debug": "^3.0.0",
     "webpack": "^3.0.0"
   }
 }
