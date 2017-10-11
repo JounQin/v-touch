@@ -9,13 +9,15 @@ webpack(config).run((err, stats) => {
   const jsonStats = stats.toJson()
 
   debug('Webpack compile completed.')
-  console.log(stats.toString({
-    modules: false,
-    children: false,
-    chunks: false,
-    chunkModules: false,
-    colors: true
-  }))
+  console.log(
+    stats.toString({
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false,
+      colors: true
+    })
+  )
 
   if (err) {
     debug('Webpack compiler encountered a fatal error.', err)

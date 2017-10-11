@@ -1,35 +1,21 @@
 language: node_js
+
 node_js: stable
-sudo: false
 
-branches:
-  only:
-  - master
-  - /^greenkeeper/.*$/
+cache: yarn
 
-before_install:
-- set -e
-- openssl aes-256-cbc -K $encrypted_fe4985c260e0_key -iv $encrypted_fe4985c260e0_iv
-  -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
-- eval $(ssh-agent)
-- ssh-add ~/.ssh/id_rsa
-- cp .travis/ssh_config ~/.ssh/config
-- git config --global user.name 'JounQin'
-- git config --global user.email 'liujiaren1992@vip.qq.com'
-- npm i -g yarn
-- rm -rf yarn.lock
+before_install: yarn global add greenkeeper-lockfile
 
-install:
-- yarn
+before_script: greenkeeper-lockfile-update
 
-script:
-- yarn dist
+script: yarn lint
 
-#deploy:
-#  provider: npm
-#  email: liujiaren1992@vip.qq.com
-#  api_key:
-#    secure: i0h2Qk7fT2pChSCoWygSXr1EUtqyxTPyW8eQ9hH3d6FjhuS0aFXCTbcuKdbQReNx0a6yLyrX1iD1nhmj9z8ael/4JWVee19g2g7RHnHJEjFZEXNSfV2WX58De82BoeXKTP8HiyDr83zBbrdqazmYd/TpW4bc9OX7r1RlVW6IJhBJLQuebmKxYSOwZrfS9g9sUu+WrVM+nzrbkIwhjxIvoinpuByT6V1GQErXvtotO3W/VlW5J7ICSho1iNrRiqCTCVNszfIUKWCadB7VUU4bulWbQpnnSvxLuT5DunMUDpM9L83UAGC+G8BV0AmjeG6h+vvRlaOfrArrCgAbsiZGrVmxBTbTQdX7YH9YL836p1HR+1xs/KbDu1PGBOpO6AxM/vYzfAQJw2WfJD7VhyvWCMpPVf/gckCBvY/Hbtj0q8+JmY+azWAJ9bMxKy0MAnp+FTq4tkBQrj8xM4w7FBfr5C1uopw83pIXM91FQwx4s0IyzgQk5FWe48jLl4b8OfkaRqObcVjSrZqZXsXWhooSfXiUtCyOMQzncqJJ5n2BUak+YS+SqSTvHb/AGs0NT+l/Z36LlIZ0MpNLGRvubHUnT9xnd6ySakqtirOwOZWsGSrtF7FvGNWWkuV2WxdNFIkCoPrg6zT1ZBANSr8d6GSn8vGmg+zqDZY3HJqUqTdHWPc=
-#  on:
-#    all_branches: true
+after_script: greenkeeper-lockfile-upload
+
+deploy:
+  provider: npm
+  email: liujiaren1992@vip.qq.com
+  api_key:
+    secure: i0h2Qk7fT2pChSCoWygSXr1EUtqyxTPyW8eQ9hH3d6FjhuS0aFXCTbcuKdbQReNx0a6yLyrX1iD1nhmj9z8ael/4JWVee19g2g7RHnHJEjFZEXNSfV2WX58De82BoeXKTP8HiyDr83zBbrdqazmYd/TpW4bc9OX7r1RlVW6IJhBJLQuebmKxYSOwZrfS9g9sUu+WrVM+nzrbkIwhjxIvoinpuByT6V1GQErXvtotO3W/VlW5J7ICSho1iNrRiqCTCVNszfIUKWCadB7VUU4bulWbQpnnSvxLuT5DunMUDpM9L83UAGC+G8BV0AmjeG6h+vvRlaOfrArrCgAbsiZGrVmxBTbTQdX7YH9YL836p1HR+1xs/KbDu1PGBOpO6AxM/vYzfAQJw2WfJD7VhyvWCMpPVf/gckCBvY/Hbtj0q8+JmY+azWAJ9bMxKy0MAnp+FTq4tkBQrj8xM4w7FBfr5C1uopw83pIXM91FQwx4s0IyzgQk5FWe48jLl4b8OfkaRqObcVjSrZqZXsXWhooSfXiUtCyOMQzncqJJ5n2BUak+YS+SqSTvHb/AGs0NT+l/Z36LlIZ0MpNLGRvubHUnT9xnd6ySakqtirOwOZWsGSrtF7FvGNWWkuV2WxdNFIkCoPrg6zT1ZBANSr8d6GSn8vGmg+zqDZY3HJqUqTdHWPc=
+  on:
+    tag: true
