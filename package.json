@@ -44,7 +44,7 @@
     "cross-env": "^5.0.5",
     "debug": "^3.0.1",
     "eslint": "^4.8.0",
-    "eslint-config-1stg": "^0.0.5",
+    "eslint-config-1stg": "^2.0.0",
     "webpack": "^3.7.1"
   }
 }
