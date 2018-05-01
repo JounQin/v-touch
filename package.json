@@ -2,13 +2,7 @@
   "name": "v-touch",
   "version": "1.5.2",
   "description": "A full-featured gesture component designed for Vue",
-  "keywords": [
-    "vue",
-    "touch",
-    "gesture",
-    "component",
-    "vue-touch"
-  ],
+  "keywords": ["vue", "touch", "gesture", "component", "vue-touch"],
   "main": "index.js",
   "repository": {
     "url": "https://github.com/JounQin/v-touch",
@@ -20,31 +14,68 @@
   },
   "author": "JounQin <admin@1stg.me>",
   "license": "MIT",
-  "files": [
-    "index.js",
-    "dist/*.js"
-  ],
+  "files": ["index.js", "dist/*.js"],
   "scripts": {
     "build": "node webpack",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "dist": "cross-env DEBUG=v-touch npm run build && npm run build:prod",
     "lint": "eslint . --max-warnings=10",
     "lint:fix": "yarn lint --fix",
+    "precommit": "lint-staged",
     "prepublishOnly": "yarn dist"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@baael/env",
+        {
+          "modules": false
+        }
+      ],
+      "@babel/stage-0"
+    ],
+    "comments": false
+  },
+  "eslintConfig": {
+    "extends": "1stg",
+    "env": {
+      "browser": true
+    }
+  },
+  "eslintIgnore": ["dist"],
+  "lint-staged": {
+    "*.js": ["eslint --fix", "git add"]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "overrides": [
+      {
+        "files": "*.json",
+        "options": {
+          "printWidth": 150
+        }
+      }
+    ]
   },
   "peerDependencies": {
     "vue": "^2.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "cross-env": "^5.0.5",
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "@babel/preset-stage-0": "^7.0.0-beta.46",
+    "@babel/register": "^7.0.0-beta.46",
+    "babel-loader": "^8.0.0-beta.2",
+    "cross-env": "^5.1.4",
     "debug": "^3.0.1",
-    "eslint": "^4.8.0",
-    "eslint-config-1stg": "^0.0.5",
-    "webpack": "^3.7.1"
+    "eslint": "^4.19.1",
+    "eslint-config-1stg": "^2.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.5",
+    "prettier": "^1.12.1",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.1.2"
   }
 }
