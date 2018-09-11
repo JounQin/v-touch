@@ -69,7 +69,7 @@
     "@babel/register": "^7.0.0-beta.46",
     "babel-loader": "^8.0.0-beta.2",
     "cross-env": "^5.1.4",
-    "debug": "^3.0.1",
+    "debug": "^4.0.0",
     "eslint": "^5.0.0",
     "eslint-config-1stg": "^3.0.0",
     "husky": "^0.14.3",
