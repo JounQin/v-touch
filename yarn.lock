@@ -854,10 +854,6 @@ abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
 
-acorn-dynamic-import@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/acorn-dynamic-import/-/acorn-dynamic-import-4.0.0.tgz#482210140582a36b83c3e342e1cfebcaa9240948"
-
 acorn-globals@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/acorn-globals/-/acorn-globals-4.1.0.tgz#ab716025dbe17c54d3ef81d32ece2b2d99fe2538"
@@ -872,7 +868,7 @@ acorn@^5.0.0, acorn@^5.3.0:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.1.tgz#f095829297706a7c9776958c0afc8930a9b9d9d8"
 
-acorn@^6.0.2, acorn@^6.0.5, acorn@^6.0.7:
+acorn@^6.0.2, acorn@^6.0.7, acorn@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.2.0.tgz#67f0da2fc339d6cfb5d6fb244fd449f33cd8bbe3"
 
@@ -3951,7 +3947,7 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
 
 onetime@^1.0.0:
   version "1.1.0"
-  resolved "http://registry.npmjs.org/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
+  resolved "https://registry.npmjs.org/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
 
 onetime@^2.0.0:
   version "2.0.1"
@@ -5326,15 +5322,14 @@ webpack-sources@^1.3.0:
     source-map "~0.6.1"
 
 webpack@^4.6.0:
-  version "4.35.2"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.35.2.tgz#5c8b8a66602cbbd6ec65c6e6747914a61c1449b1"
+  version "4.36.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.36.1.tgz#f546fda7a403a76faeaaa7196c50d12370ed18a9"
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
     "@webassemblyjs/wasm-edit" "1.8.5"
     "@webassemblyjs/wasm-parser" "1.8.5"
-    acorn "^6.0.5"
-    acorn-dynamic-import "^4.0.0"
+    acorn "^6.2.0"
     ajv "^6.1.0"
     ajv-keywords "^3.1.0"
     chrome-trace-event "^1.0.0"
